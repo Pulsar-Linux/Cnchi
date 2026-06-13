@@ -1,4 +1,4 @@
-# Cnchi ![version](https://img.shields.io/badge/version-0.16.52--next-blue.svg) ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg) [![Build Packages](https://github.com/Antergos-NeXT/antergos-pkgs/actions/workflows/build.yml/badge.svg)](https://github.com/Antergos-NeXT/antergos-pkgs/actions/workflows/build.yml)
+# Cnchi ![version](https://img.shields.io/badge/version-0.17.0--cnchi--dev-blue.svg) ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg) [![Build Packages](https://github.com/Antergos-NeXT/antergos-pkgs/actions/workflows/build.yml/badge.svg)](https://github.com/Antergos-NeXT/antergos-pkgs/actions/workflows/build.yml)
 
 **Graphical installer for Arch Linux** — revived and maintained by **Antergos NeXT**.
 
