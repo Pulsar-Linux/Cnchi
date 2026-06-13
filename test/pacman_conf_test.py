@@ -4,7 +4,7 @@
 #  pacman_conf_test.py
 #
 #  Copyright 2014 Markus M. May
-#  Copyright 2014 Antergos
+#  Copyright 2014 Pulsar
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by

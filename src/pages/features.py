@@ -3,7 +3,7 @@
 #
 #  features.py
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -384,7 +384,7 @@ class Features(GtkBaseBox):
             txt1 = _("Arch User Repository - Disclaimer")
             txt2 = _("The Arch User Repository is a collection of user-submitted PKGBUILDs\n"
                      "that supplement software available from the official repositories.\n\n"
-                     "The AUR is community driven and NOT supported by Arch or Antergos.\n")
+                     "The AUR is community driven and NOT supported by Arch or Pulsar.\n")
         elif feature == "ufw":
             # Ufw rules info
             txt1 = _("Uncomplicated Firewall will be installed with these rules:")

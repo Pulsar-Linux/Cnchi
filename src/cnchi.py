@@ -3,7 +3,7 @@
 #
 #  cnchi.py
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -26,7 +26,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with Cnchi; If not, see <http://www.gnu.org/licenses/>.
 
-""" Main Cnchi (Antergos NeXT Installer) module """
+""" Main Cnchi (Pulsar Installer) module """
 
 import os
 import sys
@@ -85,7 +85,7 @@ class CnchiApp(Gtk.Application):
     def __init__(self, cmd_line):
         """ Constructor. Call base class """
         Gtk.Application.__init__(self,
-                                 application_id="com.antergos.next.cnchi",
+                                 application_id="com.pulsar.next.cnchi",
                                  flags=Gio.ApplicationFlags.FLAGS_NONE)
         self.tmp_running = os.path.join(CnchiApp.TEMP_FOLDER, ".setup-running")
         self.cmd_line = cmd_line
@@ -204,7 +204,7 @@ class CnchiInit():
         self.cmd_line = self.parse_options()
 
         if self.cmd_line.version:
-            print(_("Cnchi (Antergos NeXT Installer) version {0}").format(
+            print(_("Cnchi (Pulsar Installer) version {0}").format(
                 info.CNCHI_VERSION))
             sys.exit(0)
 
@@ -253,7 +253,7 @@ class CnchiInit():
             lines = pacman.readlines()
 
         repos = [
-            "[antergos-pkgs]", "[core]", "[extra]", "[multilib]"]
+            "[pulsar-pkgs]", "[core]", "[extra]", "[multilib]"]
 
         for line in lines:
             line = line.strip('\n')
@@ -414,7 +414,7 @@ class CnchiInit():
         """ Hostname contains the ISO version """
         from socket import gethostname
         hostname = gethostname()
-        # antergos-next-year.month-iso
+        # pulsar-year.month-iso
         prefix = "ant-"
         suffix = "-min"
         if hostname.startswith(prefix) or hostname.endswith(suffix):
@@ -425,7 +425,7 @@ class CnchiInit():
                 version = hostname[len(prefix):]
             logging.debug("Running from ISO version %s", version)
             # Delete user's chromium cache (just in case)
-            cache_dir = "/home/antergos/.cache/chromium"
+            cache_dir = "/home/pulsar/.cache/chromium"
             if os.path.exists(cache_dir):
                 shutil.rmtree(path=cache_dir, ignore_errors=True)
                 logging.debug("User's chromium cache deleted")
@@ -442,7 +442,7 @@ class CnchiInit():
 
         import argparse
 
-        desc = _("Cnchi v{0} - Antergos NeXT Installer").format(info.CNCHI_VERSION)
+        desc = _("Cnchi v{0} - Pulsar Installer").format(info.CNCHI_VERSION)
         parser = argparse.ArgumentParser(description=desc)
 
         parser.add_argument(
@@ -574,7 +574,7 @@ class CnchiInit():
     def enable_repositories():
         """ Enable needed repositories in /etc/pacman.conf (just in case) """
 
-        repositories = ['antergos-pkgs', 'core', 'extra', 'multilib']
+        repositories = ['pulsar-pkgs', 'core', 'extra', 'multilib']
 
         # Read pacman.conf file
         try:
@@ -600,23 +600,23 @@ class CnchiInit():
                 with misc.raised_privileges():
                     with open("/etc/pacman.conf", 'at') as pconf:
                         pconf.write("[{}]\n".format(repo))
-                        if repo == 'antergos-pkgs':
+                        if repo == 'pulsar-pkgs':
                             pconf.write("SigLevel = Optional TrustAll\n")
-                            pconf.write("Server = https://Antergos-NeXT.github.io/antergos-pkgs/\n\n")
+                            pconf.write("Server = https://Pulsar-Linux.github.io/pulsar-pkgs/\n\n")
                         else:
                             pconf.write("Include = /etc/pacman.d/mirrorlist\n\n")
 
     def disable_suspend(self):
         """ Disable gnome settings suspend to ram """
         try:
-            pwd.getpwnam('antergos')
+            pwd.getpwnam('pulsar')
             schema = 'org.gnome.settings-daemon.plugins.power'
             keys = ['sleep-inactive-ac-type', 'sleep-inactive-battery-type']
             value = 'nothing'
             for key in keys:
-                self.gsettings_set('antergos-next', schema, key, value)
+                self.gsettings_set('pulsar', schema, key, value)
         except KeyError:
-            logging.warning('User "antergos" does not exist')
+            logging.warning('User "pulsar" does not exist')
 
     @staticmethod
     def gsettings_set(user, schema, key, value):

@@ -4,7 +4,7 @@
 #
 # services.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #

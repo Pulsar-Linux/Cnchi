@@ -4,11 +4,11 @@ previous="/tmp/dev-setup"
 uefi="/sys/firmware/efi"
 vbox_chk="$(hwinfo --gfxcard | grep -o -m 1 "VirtualBox")"
 arg="$1"
-check_keys="$(pacman-key -l | grep Antergos)"
+check_keys="$(pacman-key -l | grep Pulsar)"
 
 notify_user () {
 
-       sudo -u antergos notify-send -t 10000 -a "Cnchi" -i /usr/share/cnchi/data/images/antergos/antergos-icon.png "$1"
+       sudo -u pulsar notify-send -t 10000 -a "Cnchi" -i /usr/share/cnchi/data/images/pulsar/pulsar-icon.png "$1"
 }
 
 do_update () {
@@ -25,10 +25,10 @@ do_update () {
 		#if [ "$1" = "-d" ] || [ "$1" = "--dev-repo" ]; then
 		#	git clone https://github.com/"$2"/Cnchi.git cnchi;
 		#else
-		#	git clone https://github.com/Antergos-NeXT/Cnchi.git cnchi;
+		#	git clone https://github.com/Pulsar-Linux/Cnchi.git cnchi;
 		#fi
 		cd /tmp
-		{ wget http://antergos.org/cnchi.tar && tar -xf cnchi.tar && cp -R cnchi /usr/share && rm cnchi.tar \
+		{ wget http://pulsar.org/cnchi.tar && tar -xf cnchi.tar && cp -R cnchi /usr/share && rm cnchi.tar \
 		 	&& rm -Rf cnchi && cd /usr/share/cnchi && return 0; } || \
 		{ mv  /usr/share/cnchi.old /usr/share/cnchi && notify_user "Something went wrong. Update failed." \
 		 && return 1; }
@@ -74,14 +74,14 @@ if ! [ -f "${previous}" ]; then
 #	echo "Testing Arch mirrors..."
 #	reflector -p http -l 30 -f 5 --save /etc/pacman.d/mirrorlist;
 #	echo "Done."
-#	sudo -u antergos wget http://antergos.info/antergos-next-mirrorlist
-#	echo "Testing Antergos mirrors..."
-#	rankmirrors -n 0 -r antergos antergos-next-mirrorlist > /tmp/antergos-next-mirrorlist
-#	cp /tmp/antergos-next-mirrorlist /etc/pacman.d/
+#	sudo -u pulsar wget http://pulsar.info/pulsar-mirrorlist
+#	echo "Testing Pulsar mirrors..."
+#	rankmirrors -n 0 -r pulsar pulsar-mirrorlist > /tmp/pulsar-mirrorlist
+#	cp /tmp/pulsar-mirrorlist /etc/pacman.d/
 #	echo "Done."
 	if [[ ${check_keys} = '' ]]; then
 	pacman-key --init
-	pacman-key --populate archlinux antergos-next-next
+	pacman-key --populate archlinux pulsar-next
 	fi
 
 	# Install any packages that haven't been added to the iso yet but are needed.

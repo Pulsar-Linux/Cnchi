@@ -39,7 +39,7 @@
         <edition name="graphic" description="Common to all graphic desktops">
             <packages>
                 <pkgname>accountsservice</pkgname>
-                <pkgname>antergos-wallpapers</pkgname>
+                <pkgname>pulsar-wallpapers</pkgname>
                 <pkgname>cdrtools</pkgname>
                 <pkgname>dconf-editor</pkgname>
                 <pkgname>ffmpegthumbnailer</pkgname>
@@ -660,7 +660,7 @@
             <pkgname>efibootmgr</pkgname>
             <pkgname>grub</pkgname>
             <pkgname>os-prober</pkgname>
-            <pkgname>grub2-theme-antergos-next</pkgname>
+            <pkgname>grub2-theme-pulsar</pkgname>
         </bootloader>
         <bootloader name="systemd-boot">
             <pkgname>efibootmgr</pkgname>

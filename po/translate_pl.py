@@ -2,7 +2,7 @@
 
 import re
 
-po_path = '/home/xalatath/Antergos-NeXT-ISO/Cnchi/po/pl.po'
+po_path = '/home/xalatath/Pulsar-Linux-ISO/Cnchi/po/pl.po'
 
 translations = {
     "Set accessibility feature on by default":
@@ -117,8 +117,8 @@ translations = {
         "Konfigurowanie układu klawiatury...",
     "Configuring hardware...":
         "Konfigurowanie sprzętu...",
-    "Getting your disk(s) ready for Antergos...":
-        "Przygotowywanie dysku(tów) dla Antergos NeXT...",
+    "Getting your disk(s) ready for Pulsar...":
+        "Przygotowywanie dysku(tów) dla Pulsar...",
     "Adding '%s' bootloader packages":
         "Dodawanie pakietów programu rozruchowego '%s'",
     "Couldn't find %s bootloader packages!":
@@ -159,8 +159,8 @@ translations = {
         "Nie można sformatować partycji '{0}' z etykietą '{1}' jako '{2}': {3}",
     "Cannot commit your changes to disk: {0}":
         "Nie można zatwierdzić zmian na dysku: {0}",
-    "I need help with an Antergos / Windows(tm) dual boot setup!":
-        "Potrzebuję pomocy z konfiguracją podwójnego rozruchu Antergos / Windows!",
+    "I need help with an Pulsar / Windows(tm) dual boot setup!":
+        "Potrzebuję pomocy z konfiguracją podwójnego rozruchu Pulsar / Windows!",
     "How would you like to proceed?":
         "Jak chcesz kontynuować?",
     "WARNING! This will overwrite everything currently on your drive!":

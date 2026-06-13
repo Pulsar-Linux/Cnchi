@@ -3,9 +3,9 @@
 #
 #  poodle.py
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
-#  This file is part of Antergos Package Assistant, (Poodle).
+#  This file is part of Pulsar Package Assistant, (Poodle).
 #
 #  Poodle is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by

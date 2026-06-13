@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 #
 #  Copyright (c) 2012 Canonical Ltd.
-#  Copyright (c) 2026 Antergos NeXT NeXT NeXT
+#  Copyright (c) 2026 Pulsar
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -589,8 +589,8 @@ def is_partition_extended(partition):
     if "/dev/mapper" in partition:
         return False
 
-    # In automatic LVM volume is called AntergosNeXTVG
-    if "/dev/AntergosNeXTVG" in partition:
+    # In automatic LVM volume is called PulsarVG
+    if "/dev/PulsarVG" in partition:
         return False
 
     if "/dev/" in partition:

@@ -3,7 +3,7 @@
 #
 #  check.py
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -26,7 +26,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with Cnchi; If not, see <http://www.gnu.org/licenses/>.
 
-""" Check screen (detects if Antergos prerequisites are meet) """
+""" Check screen (detects if Pulsar prerequisites are meet) """
 
 import logging
 import os
@@ -289,10 +289,10 @@ class CheckProcess(multiprocessing.Process):
 
     @staticmethod
     def get_cnchi_version_in_repo():
-        """ Checks cnchi version in the Antergos repository """
+        """ Checks cnchi version in the Pulsar repository """
         mirrors = [
-            ("info.antergos.repo", "/antergos-next/x86_64/antergos-next.db"),
-            ("net.leaseweb.de.mirror", "/antergos/antergos-next/x86_64/antergos-next.db")]
+            ("info.pulsar.repo", "/pulsar/x86_64/pulsar.db"),
+            ("net.leaseweb.de.mirror", "/pulsar/pulsar/x86_64/pulsar.db")]
 
         for fdqn, path in mirrors:
             fdqn = '.'.join(fdqn.split('.')[::-1])
@@ -314,10 +314,10 @@ class CheckProcess(multiprocessing.Process):
                             break
                 if pkg:
                     version = pkg.split('-')[1]
-                    logging.debug('Cnchi version in the Antergos repository is: %s', version)
+                    logging.debug('Cnchi version in the Pulsar repository is: %s', version)
                     return version
             except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, tarfile.ReadError) as err:
                 logging.warning(err)
 
-        logging.error("Cannot get Cnchi's version from Antergos repository!")
+        logging.error("Cannot get Cnchi's version from Pulsar repository!")
         return None

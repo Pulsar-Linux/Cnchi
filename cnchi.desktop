@@ -1,16 +1,16 @@
 [Desktop Entry]
 Categories=System;
-Comment[pl_PL]=Zainstaluj system Antergos Linux
-Comment=Zainstaluj system Antergos Linux
+Comment[pl_PL]=Zainstaluj system Pulsar Linux
+Comment=Zainstaluj system Pulsar Linux
 Comment[sk]=Nainštaluje operačný systém na disk
 Exec=/usr/bin/cnchi
 GenericName[pl_PL]=Live Installer
 GenericName=Live Installer
 Icon=cnchi
 MimeType=
-Name[pl_PL]=Zainstaluj Antergos Linux
-Name=Zainstaluj Antergos Linux
-Name[sk]=Inštalovať Antergos Linux
+Name[pl_PL]=Zainstaluj Pulsar Linux
+Name=Zainstaluj Pulsar Linux
+Name[sk]=Inštalovať Pulsar Linux
 Path=
 StartupNotify=true
 Terminal=false

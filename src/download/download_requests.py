@@ -3,7 +3,7 @@
 #
 # download_requests.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -78,7 +78,7 @@ class CopyToCache(threading.Thread):
 class Download():
     """ Class to download packages using requests
         This class tries to previously download all necessary packages for
-        Antergos NeXT installation using requests """
+        Pulsar installation using requests """
 
     def __init__(self, pacman_cache_dir, xz_cache_dirs, callback_queue, proxies=None):
         """ Initialize Download class. Gets default configuration """

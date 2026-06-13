@@ -3,7 +3,7 @@
 #
 # show_message.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -66,7 +66,7 @@ def error(parent, my_message):
     if not isinstance(parent, Gtk.Window):
         parent = None
     alert = _make_alert(
-        _("Antergos NeXT Installer - Error"),
+        _("Pulsar Installer - Error"),
         my_message,
         [_("_Close")])
     alert.choose(parent, None, lambda *a: None)
@@ -76,7 +76,7 @@ def warning(parent, my_message):
     if not isinstance(parent, Gtk.Window):
         parent = None
     alert = _make_alert(
-        _("Antergos NeXT Installer - Warning"),
+        _("Pulsar Installer - Warning"),
         my_message,
         [_("_Close")])
     alert.choose(parent, None, lambda *a: None)
@@ -86,7 +86,7 @@ def message(parent, my_message):
     if not isinstance(parent, Gtk.Window):
         parent = None
     alert = _make_alert(
-        _("Antergos NeXT Installer - Information"),
+        _("Pulsar Installer - Information"),
         my_message,
         [_("_Close")])
     alert.choose(parent, None, lambda *a: None)
@@ -96,7 +96,7 @@ def question(parent, my_message):
     if not isinstance(parent, Gtk.Window):
         parent = None
     alert = _make_alert(
-        _("Antergos NeXT Installer - Confirmation"),
+        _("Pulsar Installer - Confirmation"),
         my_message,
         [_("_No"), _("_Yes")])
     alert.set_default_button(1)

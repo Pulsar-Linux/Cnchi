@@ -4,7 +4,7 @@
 # rank_mirrors.py
 #
 # Copyright © 2012, 2013 Xyne
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -56,14 +56,14 @@ except NameError as err:
 class RankMirrors(multiprocessing.Process):
     """ Process class that downloads and sorts the mirrorlist """
 
-    REPOSITORIES = ['arch', 'antergos-next']
+    REPOSITORIES = ['arch', 'pulsar']
     MIRROR_OK_RSS = 'Alert Details: Successful response received'
 
     MIRROR_STATUS = {
         'arch': 'http://www.archlinux.org/mirrors/status/json/'}
 
     MIRRORLIST = {
-        'antergos-next': '/etc/pacman.d/antergos-next-mirrorlist',
+        'pulsar': '/etc/pacman.d/pulsar-mirrorlist',
         'arch': '/etc/pacman.d/mirrorlist'}
 
     MIRRORLIST_URL = {
@@ -79,15 +79,15 @@ class RankMirrors(multiprocessing.Process):
         super(RankMirrors, self).__init__()
         self.results = results
         self.fraction_pipe = fraction_pipe
-        # Antergos mirrors info is returned as RSS, arch's as JSON
-        self.data = {'arch': {}, 'antergos': {}}
-        self.mirrorlist_ranked = {'arch': [], 'antergos': []}
+        # Pulsar mirrors info is returned as RSS, arch's as JSON
+        self.data = {'arch': {}, 'pulsar': {}}
+        self.mirrorlist_ranked = {'arch': [], 'pulsar': []}
 
     @staticmethod
     def is_good_mirror(mirror):
         """ Check if mirror info is good enough """
         if 'summary' in mirror.keys():
-            # RSS antergos status mirror
+            # RSS pulsar status mirror
             return bool(mirror['summary'] == RankMirrors.MIRROR_OK_RSS)
 
         # JSON arch status mirror
@@ -110,12 +110,12 @@ class RankMirrors(multiprocessing.Process):
                 logging.warning(
                     'Failed to retrieve mirror status information: %s', err)
 
-        # Load status data (RSS) for antergos mirrors
-        if not self.data['antergos']:
-            self.data['antergos'] = feedparser.parse(
-                RankMirrors.MIRROR_STATUS['antergos'])
+        # Load status data (RSS) for pulsar mirrors
+        if not self.data['pulsar']:
+            self.data['pulsar'] = feedparser.parse(
+                RankMirrors.MIRROR_STATUS['pulsar'])
 
-        mirrors = {'arch': [], 'antergos': []}
+        mirrors = {'arch': [], 'pulsar': []}
 
         try:
             # Filter incomplete mirrors and mirrors that haven't synced.
@@ -126,22 +126,22 @@ class RankMirrors(multiprocessing.Process):
             logging.warning('Failed to parse retrieved mirror data: %s', err)
 
         mirror_urls = []
-        for mirror in self.data['antergos']['entries']:
+        for mirror in self.data['pulsar']['entries']:
             title = mirror['title']
             if "is UP" in title:
                 # In RSS, all mirrors are in http:// format, we prefer https://
                 mirror['url'] = mirror['link'].replace('http://', 'https://')
                 if mirror['url'] not in mirror_urls:
-                    mirrors['antergos'].append(mirror)
+                    mirrors['pulsar'].append(mirror)
                     mirror_urls.append(mirror['url'])
 
         return mirrors
 
     @staticmethod
-    def get_antergos_mirror_url(mirror_url):
+    def get_pulsar_mirror_url(mirror_url):
         """ Get full mirror url from the stats mirror url """
         lines = []
-        mirrorlist_path = RankMirrors.MIRRORLIST['antergos']
+        mirrorlist_path = RankMirrors.MIRRORLIST['pulsar']
         with open(mirrorlist_path, 'r') as mirror_file:
             lines = mirror_file.readlines()
         for line in lines:
@@ -169,9 +169,9 @@ class RankMirrors(multiprocessing.Process):
 
         test_packages = {
             'arch': {'name':'cryptsetup', 'version': ''},
-            'antergos': {'name': 'ttf-myanmar3', 'version': ''}}
+            'pulsar': {'name': 'ttf-myanmar3', 'version': ''}}
 
-        rated_mirrors = {'arch': [], 'antergos': []}
+        rated_mirrors = {'arch': [], 'pulsar': []}
 
         for key, value in test_packages.items():
             test_packages[key]['version'] = self.get_package_version(value['name'])
@@ -222,16 +222,16 @@ class RankMirrors(multiprocessing.Process):
             url_len = 0
             for mirror in mirrors[repo]:
                 url_len = max(url_len, len(mirror['url']))
-                if repo == 'antergos-next':
-                    url = self.get_antergos_mirror_url(mirror['url'])
+                if repo == 'pulsar':
+                    url = self.get_pulsar_mirror_url(mirror['url'])
                     # Save mirror url
                     mirror['url'] = url
                     if url is None:
                         package_url = None
                     else:
                         # Compose package url
-                        package_url = url.replace('$repo', 'antergos').replace('$arch', 'x86_64')
-                        package_url += RankMirrors.DB_SUBPATHS['antergos'].format(name, version)
+                        package_url = url.replace('$repo', 'pulsar').replace('$arch', 'x86_64')
+                        package_url += RankMirrors.DB_SUBPATHS['pulsar'].format(name, version)
                 else:
                     package_url = mirror['url']
                 if mirror['url'] and package_url:
@@ -244,8 +244,8 @@ class RankMirrors(multiprocessing.Process):
                 my_thread.start()
                 my_threads.append(my_thread)
 
-            # Remove mirrors that are not present in antergos-next-mirrorlist
-            if repo == 'antergos-next':
+            # Remove mirrors that are not present in pulsar-mirrorlist
+            if repo == 'pulsar':
                 mirrors_pruned = []
                 for mirror in mirrors[repo]:
                     if mirror['url'] is not None:
@@ -300,7 +300,7 @@ class RankMirrors(multiprocessing.Process):
         rankmirrors can find the best mirror. """
 
         comment_urls = [
-            'https://github.com/Antergos-NeXT/$repo/$arch',
+            'https://github.com/Pulsar-Linux/$repo/$arch',
             'sourceforge']
 
         for repo in RankMirrors.REPOSITORIES:
@@ -334,10 +334,10 @@ class RankMirrors(multiprocessing.Process):
         mlist = self.get_mirror_stats()
         mirrors = self.sort_mirrors_by_speed(mirrors=mlist)
 
-        for repo in ['arch', 'antergos-next']:
+        for repo in ['arch', 'pulsar']:
             self.mirrorlist_ranked[repo] = []
 
-        for repo in ['arch', 'antergos-next']:
+        for repo in ['arch', 'pulsar']:
             output = '# {} mirrorlist generated by cnchi #\n'.format(repo)
             for mirror in mirrors[repo]:
                 self.mirrorlist_ranked[repo].append(mirror['url'])

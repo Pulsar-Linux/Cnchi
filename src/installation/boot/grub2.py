@@ -3,7 +3,7 @@
 #
 # grub2.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -108,7 +108,7 @@ class Grub2():
             cmdline_linux_default)
 
         pattern = re.compile(
-            r"menuentry 'Antergos Linux'[\s\S]*initramfs-linux.img\n}")
+            r"menuentry 'Pulsar Linux'[\s\S]*initramfs-linux.img\n}")
 
         cfg = os.path.join(self.dest_dir, "boot/grub/grub.cfg")
         with open(cfg) as grub_file:
@@ -186,8 +186,8 @@ class Grub2():
 
         # Modify /etc/default/grub
         self.set_grub_option(
-            "GRUB_THEME", "/boot/grub/themes/Antergos-Default/theme.txt")
-        self.set_grub_option("GRUB_DISTRIBUTOR", "Antergos")
+            "GRUB_THEME", "/boot/grub/themes/Pulsar-Default/theme.txt")
+        self.set_grub_option("GRUB_DISTRIBUTOR", "Pulsar")
         self.set_grub_option("GRUB_CMDLINE_LINUX_DEFAULT", cmd_linux_default)
         self.set_grub_option("GRUB_CMDLINE_LINUX", cmd_linux)
 
@@ -234,10 +234,10 @@ class Grub2():
             logging.error(message)
 
     def prepare_grub_d(self):
-        """ Copies 10_antergos script into /etc/grub.d/ """
+        """ Copies 10_pulsar script into /etc/grub.d/ """
         grub_d_dir = os.path.join(self.dest_dir, "etc/grub.d")
         script_dir = os.path.join(self.settings.get("cnchi"), "scripts")
-        script = "10_antergos_next"
+        script = "10_pulsar_next"
 
         os.makedirs(grub_d_dir, mode=0o755, exist_ok=True)
 
@@ -331,7 +331,7 @@ class Grub2():
 
         grub_cfg_path = os.path.join(self.dest_dir, "boot/grub/grub.cfg")
         with open(grub_cfg_path) as grub_cfg:
-            if "Antergos" in grub_cfg.read():
+            if "Pulsar" in grub_cfg.read():
                 txt = _("GRUB(2) BIOS has been successfully installed.")
                 logging.info(txt)
                 self.settings.set('bootloader_installation_successful', True)
@@ -356,7 +356,7 @@ class Grub2():
 
         grub_path = os.path.join(
             self.dest_dir,
-            "boot/efi/EFI/antergos_next_grub",
+            "boot/efi/EFI/pulsar_next_grub",
             "grub{0}.efi".format(Grub2.SPEC_UEFI_ARCH))
 
         for grub_default in grub_defaults:
@@ -396,10 +396,10 @@ class Grub2():
     def install_efi(self):
         """ Install Grub2 bootloader in a UEFI system """
 
-        if os.path.exists('/install/boot/efi/EFI/antergos_next_grub'):
-            bootloader_id = 'antergos_next_grub_{0}'.format(random_generator())
+        if os.path.exists('/install/boot/efi/EFI/pulsar_next_grub'):
+            bootloader_id = 'pulsar_next_grub_{0}'.format(random_generator())
         else:
-            bootloader_id = 'antergos_next_grub'
+            bootloader_id = 'pulsar_next_grub'
 
         # grub2 in efi needs efibootmgr
         if not os.path.exists("/usr/bin/efibootmgr"):
@@ -478,7 +478,7 @@ def test_module():
     dest_dir = "/install"
     settings = {}
     settings["zfs"] = True
-    settings["zfs_pool_name"] = "Antergos_d3sq"
+    settings["zfs_pool_name"] = "Pulsar_d3sq"
     settings["use_luks"] = True
     uuids = {}
     uuids["/"] = "ABCD"

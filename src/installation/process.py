@@ -3,7 +3,7 @@
 #
 # process.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -148,7 +148,7 @@ class Process(multiprocessing.Process):
             self.overwrite_variables_lembrame()
 
             self.events.add(
-                'info', _("Getting your disk(s) ready for Antergos NeXT..."))
+                'info', _("Getting your disk(s) ready for Pulsar..."))
             with misc.raised_privileges():
                 self.install_screen.run_format()
 

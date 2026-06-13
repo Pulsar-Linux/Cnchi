@@ -3,7 +3,7 @@
 #
 # auto_partition.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -234,25 +234,25 @@ class AutoPartition():
             if self.lvm:
                 # LUKS and LVM
                 devices['luks_root'] = devices['root']
-                devices['lvm'] = "/dev/mapper/cryptAntergos"
+                devices['lvm'] = "/dev/mapper/cryptPulsar"
             else:
                 # LUKS and no LVM
                 devices['luks_root'] = devices['root']
-                devices['root'] = "/dev/mapper/cryptAntergos"
+                devices['root'] = "/dev/mapper/cryptPulsar"
                 if self.home:
                     # In this case we'll have two LUKS devices, one for root
                     # and the other one for /home
                     devices['luks_home'] = devices['home']
-                    devices['home'] = "/dev/mapper/cryptAntergosHome"
+                    devices['home'] = "/dev/mapper/cryptPulsarHome"
         elif self.lvm:
             # No LUKS but using LVM
             devices['lvm'] = devices['root']
 
         if self.lvm:
-            devices['root'] = "/dev/AntergosNeXTVG/AntergosRoot"
-            devices['swap'] = "/dev/AntergosNeXTVG/AntergosSwap"
+            devices['root'] = "/dev/PulsarVG/PulsarRoot"
+            devices['swap'] = "/dev/PulsarVG/PulsarSwap"
             if self.home:
-                devices['home'] = "/dev/AntergosNeXTVG/AntergosHome"
+                devices['home'] = "/dev/PulsarVG/PulsarHome"
 
         return devices
 
@@ -478,28 +478,28 @@ class AutoPartition():
         # Create Boot partition
         if self.bootloader in ["systemd-boot", "refind"]:
             wrapper.sgdisk_new(
-                device, part_num, "ANTERGOS_NEXT_BOOT", part_sizes['boot'], "EF00")
+                device, part_num, "PULSAR_BOOT", part_sizes['boot'], "EF00")
         else:
             wrapper.sgdisk_new(
-                device, part_num, "ANTERGOS_NEXT_BOOT", part_sizes['boot'], "8300")
+                device, part_num, "PULSAR_BOOT", part_sizes['boot'], "8300")
         part_num += 1
 
         if self.lvm:
             # Create partition for lvm
             # (will store root, swap and home (if desired) logical volumes)
             wrapper.sgdisk_new(
-                device, part_num, "ANTERGOS_LVM", part_sizes['lvm_pv'], "8E00")
+                device, part_num, "PULSAR_LVM", part_sizes['lvm_pv'], "8E00")
             part_num += 1
         else:
             wrapper.sgdisk_new(
-                device, part_num, "ANTERGOS_ROOT", part_sizes['root'], "8300")
+                device, part_num, "PULSAR_ROOT", part_sizes['root'], "8300")
             part_num += 1
             if self.home:
                 wrapper.sgdisk_new(
-                    device, part_num, "ANTERGOS_HOME", part_sizes['home'], "8302")
+                    device, part_num, "PULSAR_HOME", part_sizes['home'], "8302")
                 part_num += 1
             wrapper.sgdisk_new(
-                device, part_num, "ANTERGOS_SWAP", 0, "8200")
+                device, part_num, "PULSAR_SWAP", 0, "8200")
 
         output = call(["sgdisk", "--print", device])
         logging.debug(output)
@@ -574,18 +574,18 @@ class AutoPartition():
 
         err_msg = "Error creating LVM volume group in device {0}"
         err_msg = err_msg.format(devices['lvm'])
-        cmd = ["vgcreate", "-f", "-y", "AntergosNeXTVG", devices['lvm']]
+        cmd = ["vgcreate", "-f", "-y", "PulsarVG", devices['lvm']]
         call(cmd, msg=err_msg, fatal=True)
 
         # Fix issue 180
         # Check space we have now for creating logical volumes
-        cmd = ["vgdisplay", "-c", "AntergosNeXTVG"]
+        cmd = ["vgdisplay", "-c", "PulsarVG"]
         vg_info = call(cmd, fatal=True)
         # Get column number 12: Size of volume group in kilobytes
         vg_size = int(vg_info.split(":")[11]) / 1024
         if part_sizes['lvm_pv'] > vg_size:
             logging.debug(
-                "Real AntergosNeXTVG volume group size: %d MiB", vg_size)
+                "Real PulsarVG volume group size: %d MiB", vg_size)
             logging.debug("Reajusting logical volume sizes")
             diff_size = part_sizes['lvm_pv'] - vg_size
             part_sizes = self.get_part_sizes(
@@ -596,19 +596,19 @@ class AutoPartition():
         err_msg = "Error creating LVM logical volume"
 
         size = str(int(part_sizes['root']))
-        cmd = ["lvcreate", "--name", "AntergosRoot", "--size", size, "AntergosNeXTVG"]
+        cmd = ["lvcreate", "--name", "PulsarRoot", "--size", size, "PulsarVG"]
         call(cmd, msg=err_msg, fatal=True)
 
         if not self.home:
             # Use the remainig space for our swap volume
-            cmd = ["lvcreate", "--name", "AntergosSwap", "--extents", "100%FREE", "AntergosNeXTVG"]
+            cmd = ["lvcreate", "--name", "PulsarSwap", "--extents", "100%FREE", "PulsarVG"]
             call(cmd, msg=err_msg, fatal=True)
         else:
             size = str(int(part_sizes['swap']))
-            cmd = ["lvcreate", "--name", "AntergosSwap", "--size", size, "AntergosNeXTVG"]
+            cmd = ["lvcreate", "--name", "PulsarSwap", "--size", size, "PulsarVG"]
             call(cmd, msg=err_msg, fatal=True)
             # Use the remaining space for our home volume
-            cmd = ["lvcreate", "--name", "AntergosHome", "--extents", "100%FREE", "AntergosNeXTVG"]
+            cmd = ["lvcreate", "--name", "PulsarHome", "--extents", "100%FREE", "PulsarVG"]
             call(cmd, msg=err_msg, fatal=True)
 
     def create_filesystems(self, devices):
@@ -617,8 +617,8 @@ class AutoPartition():
             'efi': '/boot/efi', 'boot': '/boot', 'root': '/', 'home': '/home', 'swap': ''}
 
         labels = {
-            'efi': 'UEFI_SYSTEM', 'boot': 'AntergosBoot', 'root': 'AntergosRoot',
-            'home': 'AntergosHome', 'swap': 'AntergosSwap'}
+            'efi': 'UEFI_SYSTEM', 'boot': 'PulsarBoot', 'root': 'PulsarRoot',
+            'home': 'PulsarHome', 'swap': 'PulsarSwap'}
 
         fs_devices = self.get_fs_devices()
 
@@ -737,7 +737,7 @@ class AutoPartition():
         # Remove lvm in destination device
         self.remove_lvm(device)
         # Close luks devices in destination device
-        luks.close_antergos_next_devices()
+        luks.close_pulsar_next_devices()
 
         self.printk(False)
         if self.gpt:
@@ -756,11 +756,11 @@ class AutoPartition():
         if self.luks:
             luks_options = {'password': self.luks_password,
                             'key': AutoPartition.LUKS_KEY_FILES[0]}
-            luks.setup(devices['luks_root'], 'cryptAntergos', luks_options)
+            luks.setup(devices['luks_root'], 'cryptPulsar', luks_options)
             if self.home and not self.lvm:
                 luks_options = {'password': self.luks_password,
                                 'key': AutoPartition.LUKS_KEY_FILES[1]}
-                luks.setup(devices['luks_home'], 'cryptAntergosHome', luks_options)
+                luks.setup(devices['luks_home'], 'cryptPulsarHome', luks_options)
 
         if self.lvm:
             self.run_lvm(devices, part_sizes, start_part_sizes, disk_size)

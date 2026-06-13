@@ -4,7 +4,7 @@
 #  metalink.py
 #
 #  Parts of code from pm2ml Copyright (C) 2012-2013 Xyne
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -308,18 +308,18 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
-def get_antergos_next_repo_pkgs(alpm_handle):
-    """ Returns pkgs from Antergos groups (mate, mate-extra) and
-        the antergos db info """
+def get_pulsar_next_repo_pkgs(alpm_handle):
+    """ Returns pkgs from Pulsar groups (mate, mate-extra) and
+        the pulsar db info """
 
     antdb = None
     for database in alpm_handle.get_syncdbs():
-        if database.name == 'antergos-next':
+        if database.name == 'pulsar':
             antdb = database
             break
 
     if not antdb:
-        logging.error("Cannot sync antergos-pkgs repository database!")
+        logging.error("Cannot sync pulsar-pkgs repository database!")
         return {}, None
 
     group_names = ['mate', 'mate-extra']
@@ -370,9 +370,9 @@ def create_package_set(requested, ant_repo_pkgs, antdb, alpm_handle):
 
     for pkg in requested:
         for database in alpm_handle.get_syncdbs():
-            # if pkg is in antergos repo, fetch it from it (instead of another repo)
-            # pkg should be sourced from the antergos repo only.
-            if antdb and pkg in ant_repo_pkgs and database.name != 'antergos-pkgs':
+            # if pkg is in pulsar repo, fetch it from it (instead of another repo)
+            # pkg should be sourced from the pulsar repo only.
+            if antdb and pkg in ant_repo_pkgs and database.name != 'pulsar-pkgs':
                 database = antdb
 
             syncpkg = database.get_pkg(pkg)
@@ -403,10 +403,10 @@ def build_download_queue(alpm, args=None):
 
     missing_deps = list()
 
-    ant_repo_pkgs, antdb = get_antergos_next_repo_pkgs(handle)
+    ant_repo_pkgs, antdb = get_pulsar_next_repo_pkgs(handle)
 
     if not antdb:
-        logging.error("Cannot load antergos-pkgs repository database")
+        logging.error("Cannot load pulsar-pkgs repository database")
         return None, None, None
 
     found, other = create_package_set(requested, ant_repo_pkgs, antdb, handle)

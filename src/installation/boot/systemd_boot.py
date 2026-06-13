@@ -3,7 +3,7 @@
 #
 # systemd_boot.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -52,7 +52,7 @@ class SystemdBoot():
         os.makedirs(menu_dir, mode=0o755, exist_ok=True)
         menu_path = os.path.join(menu_dir, "loader.conf")
         with open(menu_path, 'w') as menu_file:
-            menu_file.write("default antergos-next-next\n")
+            menu_file.write("default pulsar-next\n")
             menu_file.write("timeout 3\n")
 
         # Setup boot entries
@@ -99,14 +99,14 @@ class SystemdBoot():
             options += ' zfs={0}'.format(zfs_pool_name)
 
         conf['default'] = []
-        conf['default'].append("title\tAntergos\n")
+        conf['default'].append("title\tPulsar\n")
         conf['default'].append("linux\t/vmlinuz-linux\n")
         conf['default'].append("initrd\t/intel-ucode.img\n")
         conf['default'].append("initrd\t/initramfs-linux.img\n")
         conf['default'].append("options\t{0}\n\n".format(options))
 
         conf['fallback'] = []
-        conf['fallback'].append("title\tAntergos (fallback)\n")
+        conf['fallback'].append("title\tPulsar (fallback)\n")
         conf['fallback'].append("linux\t/vmlinuz-linux\n")
         conf['fallback'].append("initrd\t/intel-ucode.img\n")
         conf['fallback'].append("initrd\t/initramfs-linux-fallback.img\n")
@@ -114,14 +114,14 @@ class SystemdBoot():
 
         if self.settings.get('feature_lts'):
             conf['lts'] = []
-            conf['lts'].append("title\tAntergos LTS\n")
+            conf['lts'].append("title\tPulsar LTS\n")
             conf['lts'].append("linux\t/vmlinuz-linux-lts\n")
             conf['lts'].append("initrd\t/intel-ucode.img\n")
             conf['lts'].append("initrd\t/initramfs-linux-lts.img\n")
             conf['lts'].append("options\t{0}\n\n".format(options))
 
             conf['lts_fallback'] = []
-            conf['lts_fallback'].append("title\tAntergos LTS (fallback)\n")
+            conf['lts_fallback'].append("title\tPulsar LTS (fallback)\n")
             conf['lts_fallback'].append("linux\t/vmlinuz-linux-lts\n")
             conf['lts_fallback'].append("initrd\t/intel-ucode.img\n")
             conf['lts_fallback'].append(
@@ -132,24 +132,24 @@ class SystemdBoot():
         entries_dir = os.path.join(self.dest_dir, "boot/loader/entries")
         os.makedirs(entries_dir, mode=0o755, exist_ok=True)
 
-        entry_path = os.path.join(entries_dir, "antergos-next.conf")
+        entry_path = os.path.join(entries_dir, "pulsar.conf")
         with open(entry_path, 'w') as entry_file:
             for line in conf['default']:
                 entry_file.write(line)
 
-        entry_path = os.path.join(entries_dir, "antergos-next-fallback.conf")
+        entry_path = os.path.join(entries_dir, "pulsar-fallback.conf")
         with open(entry_path, 'w') as entry_file:
             for line in conf['fallback']:
                 entry_file.write(line)
 
         if self.settings.get('feature_lts'):
-            entry_path = os.path.join(entries_dir, "antergos-next-lts.conf")
+            entry_path = os.path.join(entries_dir, "pulsar-lts.conf")
             with open(entry_path, 'w') as entry_file:
                 for line in conf['lts']:
                     entry_file.write(line)
 
             entry_path = os.path.join(
-                entries_dir, "antergos-next-lts-fallback.conf")
+                entries_dir, "pulsar-lts-fallback.conf")
             with open(entry_path, 'w') as entry_file:
                 for line in conf['lts_fallback']:
                     entry_file.write(line)

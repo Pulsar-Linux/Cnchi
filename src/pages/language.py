@@ -3,7 +3,7 @@
 #
 #  language.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -130,7 +130,7 @@ class Language(GtkBaseBox):
                 "caution as data loss is possible!\n\n"
                 "If you find any bugs, please report them at "
                 "<a href='{1}'>{1}</a>")
-        url = "https://github.com/Antergos-NeXT/issues"
+        url = "https://github.com/Pulsar-Linux/issues"
         txt = txt.format(txt_bold, url)
         label = self.gui.get_object("welcome_label")
         label.set_markup(txt)

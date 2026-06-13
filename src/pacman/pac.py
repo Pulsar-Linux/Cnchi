@@ -5,7 +5,7 @@
 #
 #  This code is based on previous work by Rémy Oudompheng <remy@archlinux.org>
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -272,14 +272,14 @@ class Pac():
         repos = OrderedDict()
         repo_order = []
         db_match = [db for db in self.handle.get_syncdbs()
-                    if db.name == 'antergos-next']
+                    if db.name == 'pulsar']
         antdb = OrderedDict()
-        antdb['antergos-next'] = db_match[0]
+        antdb['pulsar'] = db_match[0]
 
         one_repo_groups_names = ['cinnamon', 'mate', 'mate-extra']
         one_repo_groups = []
         for one_repo_group_name in one_repo_groups_names:
-            grp = antdb['antergos-next'].read_grp(one_repo_group_name)
+            grp = antdb['pulsar'].read_grp(one_repo_group_name)
             if not grp:
                 # Group does not exist
                 grp = ['None', []]
@@ -297,7 +297,7 @@ class Pac():
             _repos = repos
 
             if name in one_repo_pkgs:
-                # pkg should be sourced from the antergos-pkgs repo only.
+                # pkg should be sourced from the pulsar-pkgs repo only.
                 _repos = antdb
 
             result_ok, pkg = self.find_sync_package(name, _repos)

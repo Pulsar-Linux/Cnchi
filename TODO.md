@@ -1,3 +1,3 @@
-# CNCHI (Antergos Installer) TODO LIST
+# CNCHI (Pulsar Installer) TODO LIST
 
-Visit our TODO repository https://github.com/Antergos-NeXT/TODO
+Visit our TODO repository https://github.com/Pulsar-Linux/TODO

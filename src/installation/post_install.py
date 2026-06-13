@@ -3,7 +3,7 @@
 #
 # post_install.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -113,7 +113,7 @@ class PostInstallation():
             except FileExistsError:
                 pass
 
-        # Store install id for later use by antergos-next-pkgstats
+        # Store install id for later use by pulsar-pkgstats
         with open(os.path.join(log_dest_dir, 'install_id'), 'w') as install_record:
             install_id = self.settings.get('install_id')
             if not install_id:
@@ -190,7 +190,7 @@ class PostInstallation():
 
     @staticmethod
     def update_pacman_conf():
-        """ Add Antergos and multilib repos """
+        """ Add Pulsar and multilib repos """
         path = os.path.join(DEST_DIR, "etc/pacman.conf")
         if os.path.exists(path):
             with open(path) as pacman_file:
@@ -208,12 +208,12 @@ class PostInstallation():
                         pacline = pacline[1:]
                         multilib_open = False
                     elif pacline == '#[testing]\n':
-                        antlines = '\n#[antergos-next-staging]\n'
+                        antlines = '\n#[pulsar-staging]\n'
                         antlines += '#SigLevel = PackageRequired\n'
-                        antlines += '#Server = https://github.com/Antergos-NeXT/$repo/$arch/\n\n'
-                        antlines += '[antergos]\n'
+                        antlines += '#Server = https://github.com/Pulsar-Linux/$repo/$arch/\n\n'
+                        antlines += '[pulsar]\n'
                         antlines += 'SigLevel = PackageRequired\n'
-                        antlines += 'Include = /etc/pacman.d/antergos-next-mirrorlist\n\n'
+                        antlines += 'Include = /etc/pacman.d/pulsar-mirrorlist\n\n'
                         pacman_file.write(antlines)
 
                     pacman_file.write(pacline)
@@ -322,7 +322,7 @@ class PostInstallation():
             if os.path.exists(pulseaudio_path):
                 audio_system = "pulse"
             with open(fluid_path, "w") as fluid_conf:
-                fluid_conf.write('# Created by Cnchi, Antergos installer\n')
+                fluid_conf.write('# Created by Cnchi, Pulsar installer\n')
                 txt = 'SYNTHOPTS="-is -a {0} -m alsa_seq -r 48000"\n\n'
                 txt = txt.format(audio_system)
                 fluid_conf.write(txt)
@@ -542,7 +542,7 @@ class PostInstallation():
                 "Enabling colors and syntax highlighting in nano editor")
             with open(nanorc_path, 'a') as nanorc:
                 nanorc.write('\n')
-                nanorc.write('# Added by Cnchi (Antergos Installer)\n')
+                nanorc.write('# Added by Cnchi (Pulsar Installer)\n')
                 nanorc.write('set titlecolor brightwhite,blue\n')
                 nanorc.write('set statuscolor brightwhite,green\n')
                 nanorc.write('set numbercolor cyan\n')
@@ -646,7 +646,7 @@ class PostInstallation():
             # Setup systemd-networkd for systems that won't use the
             # networkmanager or connman daemons (atm it's just base install)
             # Enable systemd_networkd services
-            # https://github.com/Antergos-NeXT/Cnchi/issues/332#issuecomment-108745026
+            # https://github.com/Pulsar-Linux/Cnchi/issues/332#issuecomment-108745026
             srv.enable_services(["systemd-networkd", "systemd-resolved"])
             # Setup systemd_networkd
             # TODO: Ask user for SSID and passphrase if a wireless link is
@@ -668,7 +668,7 @@ class PostInstallation():
         except FileExistsError:
             logging.warning("File %s already exists.", mirrorlist_dst_path)
 
-        # Add Antergos repo to /etc/pacman.conf
+        # Add Pulsar repo to /etc/pacman.conf
         self.update_pacman_conf()
         self.pacman_conf_updated = True
         logging.debug("pacman.conf has been created successfully")
@@ -828,7 +828,7 @@ class PostInstallation():
             chroot_call(cmd)
 
         # Install sonar (a11y) gsettings if present in the ISO (and a11y is on)
-        src = "/usr/share/glib-2.0/schemas/92_antergos_sonar.gschema.override"
+        src = "/usr/share/glib-2.0/schemas/92_pulsar_sonar.gschema.override"
         if self.settings.get('a11y') and os.path.exists(src):
             dst = os.path.join(DEST_DIR, 'usr/share/glib-2.0/schemas')
             shutil.copy2(src, dst)

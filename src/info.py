@@ -3,7 +3,7 @@
 #
 #  info.py
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -31,7 +31,7 @@
 CNCHI_VERSION = "0.16.52"
 """ Cnchi version """
 
-CNCHI_WEBSITE = "https://github.com/Antergos-NeXT"
+CNCHI_WEBSITE = "https://github.com/Pulsar-Linux"
 """ Cnchi website """
 
 CNCHI_RELEASE_STAGE = "production"

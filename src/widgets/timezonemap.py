@@ -6,7 +6,7 @@
 # Original author: Thomas Wood <thomas.wood@intel.com>
 # Portions from Ubiquity, Copyright (C) 2009 Canonical Ltd.
 # Written in C by Evan Dandrea <evand@ubuntu.com>
-# Python port Copyright © 2026 Antergos NeXT NeXT NeXT
+# Python port Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #

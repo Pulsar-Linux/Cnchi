@@ -3,7 +3,7 @@
 #
 #  postinstall.sh
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar NeXT NeXT
 #
 #  This file is part of Cnchi.
 #
@@ -50,7 +50,7 @@ set_xscreensaver() {
 set_gsettings() {
     # Set gsettings input-source
     CN_KEYBOARD=""
-    CN_INPUT_SCHEMA="${CN_DESTDIR}/usr/share/glib-2.0/schemas/90_antergos.input-sources.gschema.override"
+    CN_INPUT_SCHEMA="${CN_DESTDIR}/usr/share/glib-2.0/schemas/90_pulsar.input-sources.gschema.override"
     if [[ "${CN_KEYBOARD_LAYOUT}" != '' ]]; then
         if [[ "${CN_KEYBOARD_VARIANT}" != '' ]]; then
             CN_KEYBOARD=${CN_KEYBOARD_LAYOUT}+${CN_KEYBOARD_VARIANT}
@@ -65,7 +65,7 @@ set_gsettings() {
     fi
 
     # Set default Internet browser
-    for CN_SCHEMA_OVERRIDE in ${CN_DESTDIR}/usr/share/glib-2.0/schemas/90_antergos*; do
+    for CN_SCHEMA_OVERRIDE in ${CN_DESTDIR}/usr/share/glib-2.0/schemas/90_pulsar*; do
         if [ "${CN_BROWSER}" != "" ]; then
             sed -i "s|chromium|${CN_BROWSER}|g" "${CN_SCHEMA_OVERRIDE}"
         else
@@ -84,10 +84,10 @@ set_dmrc() {
 }
 
 common_settings() {
-    # Set skel directory (not needed, antergos-next-desktop-settings does this)
+    # Set skel directory (not needed, pulsar-desktop-settings does this)
     #cp -R ${CN_DESTDIR}/home/${CN_USER_NAME}/.config ${CN_DESTDIR}/etc/skel
 
-    # Set .bashrc (antergos-next-desktop-settings can't set it because it's already in bash package)
+    # Set .bashrc (pulsar-desktop-settings can't set it because it's already in bash package)
     if [[ -f "${CN_DESTDIR}/etc/skel/bashrc" ]]; then
         cp ${CN_DESTDIR}/etc/skel/bashrc ${CN_DESTDIR}/etc/skel/.bashrc
         cp ${CN_DESTDIR}/etc/skel/bashrc ${CN_DESTDIR}/home/${CN_USER_NAME}/.bashrc
@@ -96,8 +96,8 @@ common_settings() {
     # Setup root defaults
     cp -R ${CN_DESTDIR}/etc/skel/. ${CN_DESTDIR}/root
 
-    # Set antergos shell logo (used by gdm)
-    cp /usr/share/antergos-next/logo.png ${CN_DESTDIR}/usr/share/antergos-next/
+    # Set pulsar shell logo (used by gdm)
+    cp /usr/share/pulsar/logo.png ${CN_DESTDIR}/usr/share/pulsar/
 }
 
 gnome_settings() {
@@ -129,7 +129,7 @@ cinnamon_settings() {
     set_dmrc cinnamon
 
     # Populate our wallpapers in Cinnamon Settings
-    chroot ${CN_DESTDIR} "ln -s /usr/share/antergos-next/wallpapers/ /home/${CN_USER_NAME}/.cinnamon/backgrounds/antergos" ${CN_USER_NAME}
+    chroot ${CN_DESTDIR} "ln -s /usr/share/pulsar/wallpapers/ /home/${CN_USER_NAME}/.cinnamon/backgrounds/pulsar" ${CN_USER_NAME}
 }
 
 xfce_settings() {
@@ -175,10 +175,10 @@ kde_settings() {
     rm -R ${CN_DESTDIR}/usr/share/kstyle/themes/qtcurve.themerc
 
     # Setup user defaults
-    #if [ -f "${CN_DESTDIR}/usr/share/antergos-kde-setup/install.sh" ]; then
-    #    chroot ${CN_DESTDIR} /usr/share/antergos-kde-setup/install.sh ${CN_USER_NAME}
-    #elif [ -f "${CN_DESTDIR}/usr/share/antergos-desktop" ]; then
-    #    chroot ${CN_DESTDIR} /usr/bin/antergos-desktop plasma ${CN_USER_NAME}
+    #if [ -f "${CN_DESTDIR}/usr/share/pulsar-kde-setup/install.sh" ]; then
+    #    chroot ${CN_DESTDIR} /usr/share/pulsar-kde-setup/install.sh ${CN_USER_NAME}
+    #elif [ -f "${CN_DESTDIR}/usr/share/pulsar-desktop" ]; then
+    #    chroot ${CN_DESTDIR} /usr/bin/pulsar-desktop plasma ${CN_USER_NAME}
     #fi
 
     cp ${CN_DESTDIR}/etc/skel/.gtkrc-2.0-kde4 ${CN_DESTDIR}/root
@@ -206,9 +206,9 @@ mate_settings() {
 
     # Copy panel layout and make it the default
     cd "${CN_DESTDIR}/usr/share/mate-panel/layouts"
-    cp /usr/share/cnchi/scripts/antergos.layout .
+    cp /usr/share/cnchi/scripts/pulsar.layout .
     rm default.layout
-    ln -sr antergos.layout default.layout
+    ln -sr pulsar.layout default.layout
     cd -
 
     # Work-around for bug in mate-panel
@@ -241,8 +241,8 @@ enlightenment_settings() {
     # http://git.enlightenment.org/core/enlightenment.git/plain/data/tools/enlightenment_remote
 
     # Setup user defaults
-    #chroot ${CN_DESTDIR} /usr/share/antergos-enlightenment-setup/install.sh ${CN_USER_NAME}
-    #chroot ${CN_DESTDIR} /usr/bin/antergos-desktop enlightenment ${CN_USER_NAME}
+    #chroot ${CN_DESTDIR} /usr/share/pulsar-enlightenment-setup/install.sh ${CN_USER_NAME}
+    #chroot ${CN_DESTDIR} /usr/bin/pulsar-desktop enlightenment ${CN_USER_NAME}
 
     # Set Keyboard layout
     E_CFG="/home/${CN_USER_NAME}/.e/e/config/standard/e.cfg"
@@ -315,16 +315,16 @@ postinstall() {
         cp "${FONTCONFIG_FILE}" "${FONTCONFIG_DIR}"
     fi
 
-    # Set Antergos NeXT name in filesystem files
+    # Set Pulsar name in filesystem files
     cp /etc/arch-release "${CN_DESTDIR}/etc"
     cp /etc/os-release "${CN_DESTDIR}/etc"
-    sed -i 's|Arch|Antergos|g' "${CN_DESTDIR}/etc/issue"
+    sed -i 's|Arch|Pulsar|g' "${CN_DESTDIR}/etc/issue"
 
-    # copy antergos menu icon
-    mkdir -p ${CN_DESTDIR}/usr/share/antergos-next/
-    cp -t ${CN_DESTDIR}/usr/share/antergos \
-    /usr/share/antergos-next/antergos-menu.png \
-    /usr/share/cnchi/data/images/antergos/antergos-menu-logo-dark-bg.png
+    # copy pulsar menu icon
+    mkdir -p ${CN_DESTDIR}/usr/share/pulsar/
+    cp -t ${CN_DESTDIR}/usr/share/pulsar \
+    /usr/share/pulsar/pulsar-menu.png \
+    /usr/share/cnchi/data/images/pulsar/pulsar-menu-logo-dark-bg.png
 
     # Set common desktop settigns
     common_settings
@@ -345,7 +345,7 @@ postinstall() {
             echo "BROWSER=/usr/bin/${CN_BROWSER}" >> "${file}"
         fi
         echo "EDITOR=/usr/bin/nano" >> "${file}"
-        # This is inside .bashrc.aliases from the antergos-next-desktop-settings package
+        # This is inside .bashrc.aliases from the pulsar-desktop-settings package
         #echo "export QT_STYLE_OVERRIDE=gtk" >> "${file}"
         #echo "export QT_SELECT=qt5" >> "${file}"
     done

@@ -3,7 +3,7 @@
 #
 # ask.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -140,7 +140,7 @@ class InstallationAsk(GtkBaseBox):
         self.enable_automatic_options(True)
 
         btn_label = _(
-            "I need help with an Antergos / Windows(tm) dual boot setup!")
+            "I need help with an Pulsar / Windows(tm) dual boot setup!")
         btn = Gtk.Button.new_with_label(btn_label)
         btn.connect(
             'clicked', self.alongside_wiki_button_clicked)
@@ -153,12 +153,12 @@ class InstallationAsk(GtkBaseBox):
     def alongside_wiki_button_clicked(self, _widget, _data=None):
         """ Shows dual installation wiki page in a browser window  """
         try:
-            self.browser = BrowserWindow("Antergos NeXT Wiki - Dual Boot")
-            url = ("https://github.com/Antergos-NeXT/wiki/install/how-to-dual-boot"
-                   "-antergos-windows-uefi-expanded-by-linuxhat/")
+            self.browser = BrowserWindow("Pulsar Wiki - Dual Boot")
+            url = ("https://github.com/Pulsar-Linux/wiki/install/how-to-dual-boot"
+                   "-pulsar-windows-uefi-expanded-by-linuxhat/")
             self.browser.load_url(url)
         except Exception as err:
-            logging.warning("Could not show Antergos NeXT wiki: %s", err)
+            logging.warning("Could not show Pulsar wiki: %s", err)
 
     def check_alongside(self):
         """ Check if alongside installation type must be enabled.
@@ -285,9 +285,9 @@ class InstallationAsk(GtkBaseBox):
         # Automatic Install
         radio = self.gui.get_object("automatic_radiobutton")
         if oses_str:
-            txt = _("Replace {0} with Antergos").format(oses_str)
+            txt = _("Replace {0} with Pulsar").format(oses_str)
         else:
-            txt = _("Erase disk and install Antergos")
+            txt = _("Erase disk and install Pulsar")
         radio.set_label(txt)
         radio.set_name('auto_radio_btn')
 
@@ -373,12 +373,12 @@ class InstallationAsk(GtkBaseBox):
 
         # Alongside Install (For now, only works with Windows)
         # if len(oses_str) > 0:
-        #     txt = _("Install Antergos alongside {0}").format(oses_str)
+        #     txt = _("Install Pulsar alongside {0}").format(oses_str)
         #     radio = self.gui.get_object("alongside_radiobutton")
         #     radio.set_label(txt)
         #
         #     label = self.gui.get_object("alongside_description")
-        #     txt = _("Installs Antergos without removing {0}").format(oses_str)
+        #     txt = _("Installs Pulsar without removing {0}").format(oses_str)
         #     txt = description_style.format(txt)
         #     label.set_markup(txt)
         #     label.set_line_wrap(True)
@@ -399,7 +399,7 @@ class InstallationAsk(GtkBaseBox):
         # Advanced Install
         radio = self.gui.get_object("advanced_radiobutton")
         radio.set_label(
-            _("Choose exactly where Antergos should be installed."))
+            _("Choose exactly where Pulsar should be installed."))
         radio.set_name("advanced_radio_btn")
 
         label = self.gui.get_object("advanced_description")
@@ -428,29 +428,29 @@ class InstallationAsk(GtkBaseBox):
         self.settings.set('use_lvm', use_lvm)
         self.settings.set('use_luks', use_luks)
         self.settings.set('use_luks_in_root', True)
-        self.settings.set('luks_root_volume', 'cryptAntergos')
+        self.settings.set('luks_root_volume', 'cryptPulsar')
         self.settings.set('use_zfs', use_zfs)
         self.settings.set('use_home', use_home)
 
         if not self.settings.get('use_zfs'):
             if self.settings.get('use_luks'):
                 logging.info(
-                    "Antergos installation will be encrypted using LUKS")
+                    "Pulsar installation will be encrypted using LUKS")
             if self.settings.get('use_lvm'):
-                logging.info("Antergos will be installed using LVM volumes")
+                logging.info("Pulsar will be installed using LVM volumes")
                 if self.settings.get('use_home'):
                     logging.info(
-                        "Antergos will be installed using a separate /home volume.")
+                        "Pulsar will be installed using a separate /home volume.")
             elif self.settings.get('use_home'):
                 logging.info(
-                    "Antergos will be installed using a separate /home partition.")
+                    "Pulsar will be installed using a separate /home partition.")
         else:
-            logging.info("Antergos will be installed using ZFS")
+            logging.info("Pulsar will be installed using ZFS")
             if self.settings.get('use_luks'):
-                logging.info("Antergos ZFS installation will be encrypted")
+                logging.info("Pulsar ZFS installation will be encrypted")
             if self.settings.get('use_home'):
                 logging.info(
-                    "Antergos will be installed using a separate /home volume.")
+                    "Pulsar will be installed using a separate /home volume.")
 
         if self.next_page == "installation_alongside":
             self.settings.set('partition_mode', 'alongside')

@@ -3,7 +3,7 @@
 #
 #  features_info.py
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -42,7 +42,7 @@ ICON_NAMES = {
     'games': 'applications-games',
     'graphic_drivers': 'gnome-system',
     'lamp': 'applications-internet',
-    'lembrame': 'com.antergos.next.lembrame',
+    'lembrame': 'com.pulsar.next.lembrame',
     'lts': 'applications-accessories',
     'office': 'accessories-text-editor',
     'sshd': 'network-connect',
@@ -159,7 +159,7 @@ TOOLTIPS = {
     'lts': _("The linux-lts package is an alternative Arch kernel package.\n"
              "This particular kernel version enjoys long-term support from upstream,\n"
              "including security fixes and some feature backports. Additionally, this\n"
-             "package includes ext4 support. For Antergos NeXT users seeking a long-term\n"
+             "package includes ext4 support. For Pulsar users seeking a long-term\n"
              "support kernel, or who want a fallback kernel in case the latest kernel\n"
              "version causes problems, this option is the answer."),
     'office': _("LibreOffice is the free power-packed Open Source\n"

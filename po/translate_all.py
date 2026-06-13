@@ -2,7 +2,7 @@
 import os, re, json, time
 import requests
 
-PO_DIR = '/home/xalatath/Antergos-NeXT-ISO/Cnchi/po'
+PO_DIR = '/home/xalatath/Pulsar-Linux-ISO/Cnchi/po'
 
 LANGS = [
     'de', 'fr', 'es', 'it', 'pt', 'pt_BR', 'ru', 'ja', 'ko',

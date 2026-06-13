@@ -3,7 +3,7 @@
 #
 # slides.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -90,7 +90,7 @@ class Slides(GtkBaseBox):
         if not self.info_label.get_label():
             self.info_label.set_markup(_("Please wait..."))
 
-        self.header.set_subtitle(_("Installing Antergos NeXT..."))
+        self.header.set_subtitle(_("Installing Pulsar..."))
 
     def prepare(self, direction):
         """ Prepare slides screen """

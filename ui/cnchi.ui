@@ -24,7 +24,7 @@
                         </child>
                         <child>
                             <object class="GtkLabel" id="sidebar_title">
-                                <property name="label">Antergos NeXT</property>
+                                <property name="label">Pulsar</property>
                                 <property name="css_classes">sidebar-title</property>
                                 <property name="xalign">0</property>
                             </object>

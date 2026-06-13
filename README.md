@@ -1,13 +1,13 @@
-# Cnchi ![version](https://img.shields.io/badge/version-0.17.0--cnchi--dev-blue.svg) ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg) [![Build Packages](https://github.com/Antergos-NeXT/antergos-pkgs/actions/workflows/build.yml/badge.svg)](https://github.com/Antergos-NeXT/antergos-pkgs/actions/workflows/build.yml)
+# Cnchi ![version](https://img.shields.io/badge/version-0.17.0--cnchi--dev-blue.svg) ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg) [![Build Packages](https://github.com/Pulsar-Linux/pulsar-pkgs/actions/workflows/build.yml/badge.svg)](https://github.com/Pulsar-Linux/pulsar-pkgs/actions/workflows/build.yml)
 
-**Graphical installer for Arch Linux** — revived and maintained by **Antergos NeXT**.
+**Graphical installer for Arch Linux** — revived and maintained by **Pulsar**.
 
-Forked from the original Antergos Cnchi, patched for modern Python (3.14+), with updated package lists and support for 10 desktop environments.
+Forked from the original Pulsar Cnchi, patched for modern Python (3.14+), with updated package lists and support for 10 desktop environments.
 
 | Branch | Status |
 |--------|--------|
-| `0.16.x` | Frozen — legacy GTK3, no longer used by antergos-pkgs |
-| `cnchi-dev` | **Active** — GTK4 redesign, used by antergos-pkgs |
+| `0.16.x` | Frozen — legacy GTK3, no longer used by pulsar-pkgs |
+| `cnchi-dev` | **Active** — GTK4 redesign, used by pulsar-pkgs |
 | `master` | Legacy upstream |
 
 ## What's different in this fork
@@ -15,7 +15,7 @@ Forked from the original Antergos Cnchi, patched for modern Python (3.14+), with
 - **Python 3.14 compat** — `crypt` → `passlib`, `locale.getdefaultlocale()` fixed, `unittest.mock` replaces standalone `mock`
 - **WebKit2 4.1** — updated from deprecated 4.0
 - **Updated packages.xml** — all 522 packages resolve against current Arch repos, 94 dead packages replaced
-- **Rebranded** — URLs, package names, and references updated to Antergos NeXT
+- **Rebranded** — URLs, package names, and references updated to Pulsar
 - **Multi-DE** — KDE Plasma (default), GNOME, XFCE, Cinnamon, Budgie, Deepin, LXQt, MATE, Enlightenment, Openbox, i3
 
 ## Cnchi-Development (GTK4 branch)
@@ -66,7 +66,7 @@ sudo -E cnchi.py
 
 ## Reporting bugs
 
-Open an issue at [github.com/Antergos-NeXT/Cnchi](https://github.com/Antergos-NeXT/Cnchi/issues) with:
+Open an issue at [github.com/Pulsar-Linux/Cnchi](https://github.com/Pulsar-Linux/Cnchi/issues) with:
 
 - `/var/log/cnchi/cnchi.log`
 - `/var/log/cnchi/cnchi-alpm.log`
@@ -75,7 +75,7 @@ Open an issue at [github.com/Antergos-NeXT/Cnchi](https://github.com/Antergos-Ne
 
 ## Building
 
-Packaged via [antergos-pkgs](https://github.com/Antergos-NeXT/antergos-pkgs). The PKGBUILD pulls from this repo's `cnchi-dev` branch.
+Packaged via [pulsar-pkgs](https://github.com/Pulsar-Linux/pulsar-pkgs). The PKGBUILD pulls from this repo's `cnchi-dev` branch.
 
 ## License
 

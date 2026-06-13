@@ -3,7 +3,7 @@
 #
 # main_window.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -176,7 +176,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.version_label = ui_builder.get_object("version_label")
 
         # Set logo
-        logo_path = os.path.join(data_dir, "images", "antergos", "antergos-icon.png")
+        logo_path = os.path.join(data_dir, "images", "pulsar", "pulsar-icon.png")
         if os.path.exists(logo_path):
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(logo_path, 220, 220, True)
             texture = Gdk.Texture.new_for_pixbuf(pixbuf)
@@ -225,7 +225,7 @@ class MainWindow(Gtk.ApplicationWindow):
         welcome_page = pages.welcome.Welcome(self.params)
         self._add_page("welcome", welcome_page)
 
-        if os.path.exists('/home/antergos/.config/openbox'):
+        if os.path.exists('/home/pulsar/.config/openbox'):
             lang_page = pages.language.Language(self.params)
             self._add_page("language", lang_page)
             self._main_window_width = 800
@@ -254,7 +254,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.set_title(f"Cnchi {nil}.{major}.{minor}")
 
         # Set window icon
-        icon_path = os.path.join(data_dir, "images", "antergos", "antergos-icon.png")
+        icon_path = os.path.join(data_dir, "images", "pulsar", "pulsar-icon.png")
         if os.path.exists(icon_path):
             try:
                 self.set_icon_name("cnchi")
@@ -438,7 +438,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self._update_steps()
 
         diff = 2
-        if os.path.exists('/home/antergos/.config/openbox'):
+        if os.path.exists('/home/pulsar/.config/openbox'):
             diff = 3
         num_pages = len(self.pages) - diff
         if num_pages > 0:
@@ -457,10 +457,10 @@ class MainWindow(Gtk.ApplicationWindow):
         dialog = Gtk.AlertDialog()
         dialog.set_message(f"Cnchi v{info.CNCHI_VERSION}")
         dialog.set_detail(
-            "Antergos NeXT Installer\n\n"
+            "Pulsar Installer\n\n"
             "GTK4 Calamares-inspired installer\n"
             "Originally based on EndeavourOS-ISO\n\n"
-            "Copyright © 2026 Antergos NeXT")
+            "Copyright © 2026 Pulsar")
         dialog.set_buttons(["_Close"])
         dialog.set_modal(True)
         dialog.choose(self, None, lambda *a: None)

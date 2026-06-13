@@ -3,7 +3,7 @@
 #
 # welcome.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -129,13 +129,13 @@ class Welcome(GtkBaseBox):
     def translate_ui(self):
         """ Translates all ui elements """
         if not self.no_tryit:
-            txt = _("Use Antergos NeXT without making any changes to your system.")
+            txt = _("Use Pulsar without making any changes to your system.")
         else:
             txt = ""
         self.labels['tryit'].set_markup(txt)
         self.labels['tryit'].set_name('tryit_label')
 
-        txt = _("Create a permanent place for Antergos NeXT on your system.")
+        txt = _("Create a permanent place for Pulsar on your system.")
         self.labels['installit'].set_markup(txt)
         self.labels['installit'].set_name('installit_label')
 
@@ -148,7 +148,7 @@ class Welcome(GtkBaseBox):
         txt = _("Install It")
         self.buttons['graph'].set_label(txt)
 
-        txt = _("Welcome to Antergos NeXT!")
+        txt = _("Welcome to Pulsar!")
         self.header.set_subtitle(txt)
 
     def quit_cnchi(self):

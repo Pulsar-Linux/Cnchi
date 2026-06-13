@@ -3,7 +3,7 @@
 #
 # mirrors.py
 #
-# Copyright © 2026 Antergos NeXT NeXT NeXT
+# Copyright © 2026 Pulsar
 #
 # This file is part of Cnchi.
 #
@@ -119,7 +119,7 @@ class MirrorListBox(Gtk.ListBox):
         'switch-activated': (GObject.SignalFlags.RUN_FIRST, None, ())
     }
 
-    # 6 mirrors for Arch repos and 6 for Antergos repos
+    # 6 mirrors for Arch repos and 6 for Pulsar repos
     MAX_MIRRORS = 7
     # DND_ID_LISTBOX_ROW = 6791
 
@@ -329,7 +329,7 @@ class Mirrors(GtkBaseBox):
 
     MIRRORLISTS = [
         "/etc/pacman.d/mirrorlist",
-        "/etc/pacman.d/antergos-next-mirrorlist"]
+        "/etc/pacman.d/pulsar-mirrorlist"]
 
     def __init__(self, params, prev_page="cache", next_page="installation_ask"):
         super().__init__(self, params, "mirrors", prev_page, next_page)
@@ -394,7 +394,7 @@ class Mirrors(GtkBaseBox):
         self.listboxes_box.set_sensitive(True)
 
     def start_rank_mirrors(self):
-        """ Launch rank mirrors process to optimize Arch and Antergos mirrorlists
+        """ Launch rank mirrors process to optimize Arch and Pulsar mirrorlists
             As user can come and go from/to this screen, we must get sure he/she
             has not already run Rankmirrors before """
 
@@ -455,8 +455,8 @@ class Mirrors(GtkBaseBox):
         lbl = self.gui.get_object("arch_mirrors_label")
         lbl.set_text(_("Arch Mirrors"))
 
-        lbl = self.gui.get_object("antergos_mirrors_label")
-        lbl.set_text(_("Antergos Mirrors"))
+        lbl = self.gui.get_object("pulsar_mirrors_label")
+        lbl.set_text(_("Pulsar Mirrors"))
 
     def store_values(self):
         """ Store selected values """

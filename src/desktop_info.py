@@ -3,7 +3,7 @@
 #
 #  desktop_info.py
 #
-#  Copyright © 2026 Antergos NeXT NeXT NeXT
+#  Copyright © 2026 Pulsar
 #
 #  This file is part of Cnchi.
 #
@@ -110,9 +110,9 @@ def _(message):
     return message
 
 DESCRIPTIONS = {
-    'base':     _("This option will install Antergos NeXT as command-line only system, "
+    'base':     _("This option will install Pulsar as command-line only system, "
                   "without any type of graphical interface. After the installation "
-                  "you can customize Antergos NeXT by installing packages with the "
+                  "you can customize Pulsar by installing packages with the "
                   "command-line package manager."),
 
     'cinnamon': _("Cinnamon is a Linux desktop which provides advanced, "
@@ -141,7 +141,7 @@ DESCRIPTIONS = {
     'openbox':  _("Not actually a desktop environment, Openbox is a highly "
                   "configurable window manager. It is known for its "
                   "minimalistic appearance and its flexibility. It is the most "
-                  "lightweight graphical option offered by Antergos NeXT. Please "
+                  "lightweight graphical option offered by Pulsar. Please "
                   "Note: Openbox is not recommended for users who are new to Linux."),
 
     'xfce':     _("Xfce is a lightweight desktop environment. It aims to "
