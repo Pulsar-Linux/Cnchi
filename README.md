@@ -6,8 +6,8 @@ Forked from the original Antergos Cnchi, patched for modern Python (3.14+), with
 
 | Branch | Status |
 |--------|--------|
-| `0.16.x` | Active — stable GTK3 release |
-| `cnchi-dev` | Development — **GTK4 redesign**, experimental features |
+| `0.16.x` | Frozen — legacy GTK3, no longer used by antergos-pkgs |
+| `cnchi-dev` | **Active** — GTK4 redesign, used by antergos-pkgs |
 | `master` | Legacy upstream |
 
 ## What's different in this fork
@@ -75,15 +75,7 @@ Open an issue at [github.com/Antergos-NeXT/Cnchi](https://github.com/Antergos-Ne
 
 ## Building
 
-Packaged via [antergos-pkgs](https://github.com/Antergos-NeXT/antergos-pkgs). The PKGBUILD pulls from this repo's `0.16.x` branch.
-
-## Dependencies
-
-- gtk3, python, python-cairo, python-gobject, python-dbus
-- python-requests, python-chardet, python-feedparser, python-idna
-- python-mako, python-geoip2, python-maxminddb, python-passlib
-- pyalpm, python-pyparted, parted, dosfstools, mtools, ntfs-3g
-- upower, gocryptfs, iso-codes, webkit2gtk-4.1
+Packaged via [antergos-pkgs](https://github.com/Antergos-NeXT/antergos-pkgs). The PKGBUILD pulls from this repo's `cnchi-dev` branch.
 
 ## License
 
