@@ -108,7 +108,7 @@ class Grub2():
             cmdline_linux_default)
 
         pattern = re.compile(
-            "menuentry 'Antergos Linux'[\s\S]*initramfs-linux.img\n}")
+            r"menuentry 'Antergos Linux'[\s\S]*initramfs-linux.img\n}")
 
         cfg = os.path.join(self.dest_dir, "boot/grub/grub.cfg")
         with open(cfg) as grub_file:
