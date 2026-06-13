@@ -2,7 +2,7 @@
 
 **Graphical installer for Arch Linux** — revived and maintained by **Pulsar**.
 
-Forked from the original Pulsar Cnchi, patched for modern Python (3.14+), with updated package lists and support for 10 desktop environments.
+Forked from the original  Antergos Cnchi, patched for modern Python (3.14+), with updated package lists and support for 10 desktop environments.
 
 | Branch | Status |
 |--------|--------|
