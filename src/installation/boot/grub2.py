@@ -237,7 +237,7 @@ class Grub2():
         """ Copies 10_pulsar script into /etc/grub.d/ """
         grub_d_dir = os.path.join(self.dest_dir, "etc/grub.d")
         script_dir = os.path.join(self.settings.get("cnchi"), "scripts")
-        script = "10_pulsar_next"
+        script = "10_pulsar"
 
         os.makedirs(grub_d_dir, mode=0o755, exist_ok=True)
 

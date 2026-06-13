@@ -1,9 +1,9 @@
 ##
-## Antergos repository mirrorlist
+## Pulsar repository mirrorlist
 ##
 
 # Autodetect your closest mirror
-Server = https://github.com/Antergos-NeXT/$repo/$arch
+Server = https://github.com/Pulsar-Linux/$repo/$arch
 
 
 # China
@@ -13,7 +13,7 @@ Server = https://github.com/Antergos-NeXT/$repo/$arch
 #Server = http://cinnarch.polymorf.fr/$repo/$arch
 
 # Greece
-#Server = http://ftp.cc.uoc.gr/mirrors/linux/antergos/$repo/$arch
+#Server = http://ftp.cc.uoc.gr/mirrors/linux/pulsar/$repo/$arch
 
 # England
 #Server = http://www.mirrorservice.org/sites/repo.cinnarch.com/$repo/$arch
