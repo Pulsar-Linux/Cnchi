@@ -263,7 +263,7 @@ class Installation():
             if os.path.exists(img):
                 os.remove(img)
 
-        # If intel-ucode or grub2-theme-pulsar-next files exist in /boot they are
+        # If intel-ucode or grub2-theme-pulsar files exist in /boot they are
         # most likely either from another linux installation or from a failed
         # install attempt and need to be removed otherwise pyalpm will refuse
         # to install those packages (like above)

@@ -52,7 +52,7 @@ class SystemdBoot():
         os.makedirs(menu_dir, mode=0o755, exist_ok=True)
         menu_path = os.path.join(menu_dir, "loader.conf")
         with open(menu_path, 'w') as menu_file:
-            menu_file.write("default pulsar-next\n")
+            menu_file.write("default pulsar\n")
             menu_file.write("timeout 3\n")
 
         # Setup boot entries
