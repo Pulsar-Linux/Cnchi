@@ -84,6 +84,9 @@ class Welcome(GtkBaseBox):
             btn = self.buttons[key]
             btn.set_name(key + "_btn")
 
+        self.buttons['tryit'].connect('clicked', self.on_tryit_button_clicked)
+        self.buttons['graph'].connect('clicked', self.on_graph_button_clicked)
+
         self.images = {'tryit': self.gui.get_object("tryit_image"),
                        # 'cli': self.gui.get_object("cli_image"),
                        'graph': self.gui.get_object("graph_image")}

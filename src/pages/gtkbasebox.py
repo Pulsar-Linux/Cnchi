@@ -63,8 +63,6 @@ class GtkBaseBox(Gtk.Box):
         self.gui_file = os.path.join(self.gui_dir, "{}.ui".format(name))
         self.gui.add_from_file(self.gui_file)
 
-        # GTK4: connect_signals removed; signals connected in each page's code
-
         child.append(self.gui.get_object(name))
 
     def get_prev_page(self):
