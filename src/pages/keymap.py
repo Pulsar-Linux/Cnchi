@@ -65,7 +65,7 @@ class Keymap(GtkBaseBox):
         column = Gtk.TreeViewColumn("Layouts")
         self.keymap_treeview.append_column(column)
         cell = Gtk.CellRendererText()
-        column.append(cell, False)
+        column.pack_start(cell, False)
         column.add_attribute(cell, "text", 0)
 
         self.keymap_treeview.set_activate_on_single_click(True)
