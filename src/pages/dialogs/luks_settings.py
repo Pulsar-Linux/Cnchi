@@ -71,9 +71,9 @@ class LuksSettingsDialog(Gtk.Dialog):
 
         self.buttons = {}
         self.buttons['apply'] = self.add_button(
-            Gtk.STOCK_APPLY, Gtk.ResponseType.APPLY)
+            _("_Apply"), Gtk.ResponseType.APPLY)
         self.buttons['cancel'] = self.add_button(
-            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+            _("_Cancel"), Gtk.ResponseType.CANCEL)
 
     def maybe_show_warning_message(self):
         """ Show warning message """
@@ -109,11 +109,9 @@ class LuksSettingsDialog(Gtk.Dialog):
 
         for grp in btns:
             btn_id, icon, lbl = grp
-            image = Gtk.Image.new_from_icon_name(icon)
             btn = self.buttons[btn_id]
-            btn.set_always_show_image(True)
-            btn.set_image(image)
             btn.set_label(lbl)
+            btn.set_icon_name(icon)
 
         self.hide_password_info()
         self.translate_ui()

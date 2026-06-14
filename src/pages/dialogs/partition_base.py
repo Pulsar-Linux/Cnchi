@@ -81,9 +81,9 @@ class PartitionBaseDialog(Gtk.Dialog):
         """ Adds apply and cancel buttons to the dialog """
         self.buttons = {}
         self.buttons['apply'] = self.add_button(
-            Gtk.STOCK_APPLY, Gtk.ResponseType.APPLY)
+            _("_Apply"), Gtk.ResponseType.APPLY)
         self.buttons['cancel'] = self.add_button(
-            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+            _("_Cancel"), Gtk.ResponseType.CANCEL)
 
         # Assign labels and images to buttons
         btns = [
@@ -94,9 +94,9 @@ class PartitionBaseDialog(Gtk.Dialog):
             (btn_id, icon, lbl) = grp
             image = Gtk.Image.new_from_icon_name(icon)
             btn = self.buttons[btn_id]
-            btn.set_always_show_image(True)
-            btn.set_image(image)
             btn.set_label(lbl)
+            btn.set_image(image)
+            btn.set_icon_name(icon)
 
     def get_beginning_point(self):
         """ Returns where the new partition should start """

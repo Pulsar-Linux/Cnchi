@@ -1102,7 +1102,7 @@ class InstallationAdvanced(GtkBaseBox):
             btn_id, icon, lbl = grp
             image = Gtk.Image.new_from_icon_name(icon)
             btn = self.gui.get_object(btn_id)
-            btn.set_always_show_image(True)
+            btn.set_icon_name("go-next")
             btn.set_image(image)
             btn.set_label(lbl)
 

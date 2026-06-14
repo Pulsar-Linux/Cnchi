@@ -56,7 +56,7 @@ class LembrameDialog(Gtk.Dialog):
 
         self.translate_ui()
 
-        self.add_button(Gtk.STOCK_APPLY, Gtk.ResponseType.APPLY)
+        self.add_button(_("_Apply"), Gtk.ResponseType.APPLY)
 
         dialog_grid = self.gui.get_object("LembrameDialogGrid")
         content_area = self.get_content_area()

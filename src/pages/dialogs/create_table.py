@@ -66,8 +66,8 @@ class CreateTableDialog(Gtk.Dialog):
         area = self.get_content_area()
         area.append(self.gui.get_object('create_table_vbox'))
 
-        self.add_button(Gtk.STOCK_APPLY, Gtk.ResponseType.APPLY)
-        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        self.add_button(_("_Apply"), Gtk.ResponseType.APPLY)
+        self.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
 
         self.set_title(_("Create Partition Table"))
         self.prepare()

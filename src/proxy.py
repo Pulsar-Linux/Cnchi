@@ -59,8 +59,8 @@ class ProxyDialog(Gtk.Dialog):
 
         self.setup_port_spin_buttons()
 
-        self.add_button(Gtk.STOCK_APPLY, Gtk.ResponseType.APPLY)
-        self.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        self.add_button(_("_Apply"), Gtk.ResponseType.APPLY)
+        self.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
 
         # Load values (if any)
         if proxies:

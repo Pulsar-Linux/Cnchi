@@ -423,7 +423,7 @@ class Mirrors(GtkBaseBox):
         """ Translates screen before showing it """
         self.header.set_subtitle(_("Mirrors Selection"))
 
-        self.forward_button.set_always_show_image(True)
+        self.forward_button.set_icon_name("go-next")
         self.forward_button.set_sensitive(True)
 
         #bold_style = '<span weight="bold">{0}</span>'

@@ -272,7 +272,7 @@ class InstallationAsk(GtkBaseBox):
         """ Translates screen before showing it """
         self.header.set_subtitle(_("Installation Type"))
 
-        self.forward_button.set_always_show_image(True)
+        self.forward_button.set_icon_name("go-next")
         self.forward_button.set_sensitive(True)
 
         # description_style = '<span style="italic">{0}</span>'
