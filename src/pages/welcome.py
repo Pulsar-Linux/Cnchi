@@ -36,7 +36,7 @@ import sys
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Gdk', '4.0')
-from gi.repository import Gdk
+from gi.repository import Gdk, GLib
 from gi.repository import Gtk
 
 import misc.extra as misc
@@ -105,8 +105,11 @@ class Welcome(GtkBaseBox):
         for key in self.images:
             image_path = self.filenames[key]['path']
             if os.path.exists(image_path):
-                texture = Gdk.Texture.new_from_filename(image_path)
-                self.images[key].set_from_paintable(texture)
+                try:
+                    texture = Gdk.Texture.new_from_filename(image_path)
+                    self.images[key].set_from_paintable(texture)
+                except GLib.GError:
+                    logging.warning("Cannot load %s", image_path)
 
         # Locale fallback warning
         self._locale_warning = None
