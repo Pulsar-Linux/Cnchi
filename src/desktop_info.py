@@ -69,12 +69,12 @@ LIBS = {
 """ Dict: Which libraries need to be installed depending on the desktop choosed. """
 
 ALL_FEATURES = [
-    "a11y", "aur", "bluetooth", "cups", "chromium", "energy", "firefox", "firewall", "flash",
+    "a11y", "aur", "bluetooth", "cups", "chromium", "energy", "firefox", "firewall",
     "games", "graphic_drivers", "lamp", "lembrame", "lts", "office", "sshd", "visual", "vivaldi"]
 """ List: All features """
 
 EXCLUDED_FEATURES = {
-    'base': ["bluetooth", "chromium", "firefox", "firewall", "flash", "games",
+    'base': ["bluetooth", "chromium", "firefox", "firewall", "games",
              "graphic_drivers", "office", "visual", "vivaldi", "lembrame"],
     'cinnamon': ["lamp", "visual", "lembrame"],
     'deepin': ["lamp", "visual", "lembrame"],

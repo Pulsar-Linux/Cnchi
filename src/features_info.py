@@ -38,7 +38,6 @@ ICON_NAMES = {
     'firefox': 'firefox',
     'vivaldi': 'vivaldi',
     'firewall': 'network-server',
-    'flash': 'flash',
     'games': 'applications-games',
     'graphic_drivers': 'gnome-system',
     'lamp': 'applications-internet',
@@ -53,7 +52,7 @@ As each desktop has its own features, these are listed
 in desktop_info module instead of here. """
 
 ADVANCED = [
-    'aur', 'firefox', 'vivaldi', 'firewall', 'flash', 'graphic_drivers',
+    'aur', 'firefox', 'vivaldi', 'firewall', 'graphic_drivers',
     'lamp', 'lts', 'sshd', 'visual']
 """ list: These features are considered 'advanced' so it won't be shown by default """
 
@@ -71,7 +70,6 @@ TITLES = {
     'firefox': _("Firefox Web Browser"),
     'vivaldi': _("Vivaldi Web Browser"),
     'firewall': _("Uncomplicated Firewall"),
-    'flash': _("Multimedia plugins (Adobe Flash, deprecated)"),
     'games': _("Steam + Wine / Lutris / Heroic Games Launcher"),
     'graphic_drivers': _("Graphic drivers (Proprietary)"),
     'lamp': _("Apache (or Nginx) + Mariadb + PHP"),
@@ -90,7 +88,6 @@ DESCRIPTIONS = {
     'energy': _("Brings you the benefits of advanced power management for Linux."),
     'firefox': _("A popular open-source graphical web browser from Mozilla."),
     'vivaldi': _("Vivaldi is a free, fast web browser designed for power-users."),
-    'flash': _("Plugins for multimedia playback (Adobe Flash Player, deprecated)."),
     'graphic_drivers': _("Installs AMD or Nvidia proprietary graphic driver."),
     'games': _("Installs Steam, Wine, Lutris and Heroic Games Launcher for gaming enthusiasts."),
     'lamp': _("Apache (or Nginx) + Mariadb + PHP installation and setup."),
@@ -138,11 +135,8 @@ TOOLTIPS = {
                  "from the Presto layout engine to the Blink layout engine, which\n"
                  "removed many popular features."),
     'firewall': _("Ufw stands for Uncomplicated Firewall, and is a program for\n"
-                  "managing a netfilter firewall. It provides a command line\n"
-                  "interface and aims to be uncomplicated and easy to use."),
-    'flash': _("Adobe Flash Player reached end-of-life on December 31, 2020.\n"
-               "It is no longer supported and should not be installed.\n"
-               "Consider using open standards like HTML5 instead."),
+                   "managing a netfilter firewall. It provides a command line\n"
+                   "interface and aims to be uncomplicated and easy to use."),
     'games': _("Steam is one of the most popular gaming clients that supports\n"
                "Linux gaming natively. Wine, Lutris and Heroic Games Launcher\n"
                "make it easy to run Windows games on Linux."),
