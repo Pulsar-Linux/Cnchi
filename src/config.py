@@ -126,7 +126,7 @@ class Settings():
             'timezone_done': False,
             'timezone_start': False,
             'temp': '/var/tmp/cnchi',
-            'ui': '/usr/share/cnchi/ui/',
+            'ui': cnchi + 'ui/',
             'use_home': False,
             'use_luks': False,
             'use_luks_in_root': False,
