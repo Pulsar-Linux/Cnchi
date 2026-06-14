@@ -277,7 +277,6 @@ class MainWindow(Gtk.ApplicationWindow):
                 display, style_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER
             )
 
-        self.present()
         self.current_page.prepare('forwards')
 
         # Pre-load more pages
