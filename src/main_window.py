@@ -265,6 +265,8 @@ class MainWindow(Gtk.ApplicationWindow):
         # Set window geometry
         self.set_default_size(self._main_window_width, self._main_window_height)
         self.set_resizable(True)
+        # Force window size after it's mapped (set_default_size is just a hint)
+        GLib.idle_add(lambda: (self.resize(self._main_window_width, self._main_window_height), False)[1])
         GLib.timeout_add(2000, lambda: (logging.info("Window size: def=%dx%d actual=%dx%d",
             self._main_window_width, self._main_window_height,
             self.get_width(), self.get_height()), False)[1])
