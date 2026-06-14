@@ -510,6 +510,17 @@ class MainWindow(Gtk.ApplicationWindow):
     def _log_page_sizes(self):
         """ Log each page's preferred width to find overflow """
         for name, page in self.pages.items():
-            w = page.get_preferred_width(-1)
-            logging.info("Page '%s' preferred width: min=%d natural=%d", name, w[0], w[1])
+            try:
+                min_w = page.measure(Gtk.Orientation.HORIZONTAL, -1)[0]
+                nat_w = page.measure(Gtk.Orientation.HORIZONTAL, -1)[1]
+                logging.info("Page '%s' width: min=%d natural=%d", name, min_w, nat_w)
+            except Exception as e:
+                logging.warning("Page '%s' measure failed: %s", name, e)
+        # Also log the stack itself
+        try:
+            min_w = self.main_stack.measure(Gtk.Orientation.HORIZONTAL, -1)[0]
+            nat_w = self.main_stack.measure(Gtk.Orientation.HORIZONTAL, -1)[1]
+            logging.info("Stack width: min=%d natural=%d", min_w, nat_w)
+        except Exception as e:
+            logging.warning("Stack measure failed: %s", e)
         return False
