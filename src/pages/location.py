@@ -39,7 +39,7 @@ import xml.etree.cElementTree as elementTree
 
 import gi
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 
 from pages.gtkbasebox import GtkBaseBox
 from logging_utils import ContextFilter
@@ -130,11 +130,17 @@ class Location(GtkBaseBox):
                             logging.debug("GeoIP matched '%s' in '%s'", name, label_text)
                             self.selected_country = label_text
                             self.listbox.select_row(listbox_row)
-                            listbox_row.grab_focus()
+                            GLib.idle_add(self._focus_row, listbox_row)
                             return
             self.select_first_listbox_item()
         else:
             self.select_first_listbox_item()
+
+    def _focus_row(self, row):
+        """ Focus the listbox row and scroll it into view """
+        self.scrolledwindow.grab_focus()
+        row.grab_focus()
+        return False
 
     def hide_all(self):
         """ Hide all widgets """
