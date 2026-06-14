@@ -51,7 +51,7 @@ sys.path.append(os.path.join(CNCHI_PATH, "src/pages/dialogs"))
 sys.path.append(os.path.join(CNCHI_PATH, "src/parted3"))
 
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gio, Gtk, GObject
+from gi.repository import Gio, Gtk, GObject, GLib
 
 import misc.extra as misc
 from misc.run_cmd import call
@@ -94,6 +94,8 @@ class CnchiApp(Gtk.Application):
         """ Override the 'activate' signal of GLib.Application.
             Shows the default first window of the application (like a new document).
             This corresponds to the application being launched by the desktop environment. """
+        # Spoof program name so gdk-pixbuf disables bwrap sandbox (fails as root)
+        GLib.set_prgname('gdk-pixbuf-thumbnailer')
         try:
             import main_window
         except ImportError as err:
