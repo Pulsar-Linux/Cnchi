@@ -71,11 +71,11 @@ TITLES = {
     'firefox': _("Firefox Web Browser"),
     'vivaldi': _("Vivaldi Web Browser"),
     'firewall': _("Uncomplicated Firewall"),
-    'flash': _("Flash plugins"),
-    'games': _("Steam + PlayonLinux"),
+    'flash': _("Multimedia plugins (Adobe Flash, deprecated)"),
+    'games': _("Steam + Wine / Lutris / Heroic Games Launcher"),
     'graphic_drivers': _("Graphic drivers (Proprietary)"),
     'lamp': _("Apache (or Nginx) + Mariadb + PHP"),
-    'lembrame': _("Lembrame"),
+    'lembrame': _("Lembrame (Settings Sync)"),
     'lts': _("Kernel (LTS version)"),
     'office': _("LibreOffice"),
     'sshd': _("SSH Service"),
@@ -90,9 +90,9 @@ DESCRIPTIONS = {
     'energy': _("Brings you the benefits of advanced power management for Linux."),
     'firefox': _("A popular open-source graphical web browser from Mozilla."),
     'vivaldi': _("Vivaldi is a free, fast web browser designed for power-users."),
-    'flash': _("Freeware software normally used for multimedia."),
+    'flash': _("Plugins for multimedia playback (Adobe Flash Player, deprecated)."),
     'graphic_drivers': _("Installs AMD or Nvidia proprietary graphic driver."),
-    'games': _("Installs Steam and Playonlinux for gaming enthusiasts."),
+    'games': _("Installs Steam, Wine, Lutris and Heroic Games Launcher for gaming enthusiasts."),
     'lamp': _("Apache (or Nginx) + Mariadb + PHP installation and setup."),
     'lembrame': _("Sync your Gnome and system settings between installations"),
     'cups': _("Installation of printer drivers and management tools."),
@@ -140,22 +140,21 @@ TOOLTIPS = {
     'firewall': _("Ufw stands for Uncomplicated Firewall, and is a program for\n"
                   "managing a netfilter firewall. It provides a command line\n"
                   "interface and aims to be uncomplicated and easy to use."),
-    'flash': _("Adobe Flash Player is freeware software for using content created\n"
-               "on the Adobe Flash platform, including viewing multimedia, executing\n"
-               "rich internet applications and streaming video and audio."),
+    'flash': _("Adobe Flash Player reached end-of-life on December 31, 2020.\n"
+               "It is no longer supported and should not be installed.\n"
+               "Consider using open standards like HTML5 instead."),
     'games': _("Steam is one of the most popular gaming clients that supports\n"
-               "linux in technology and gaming, while PlayOnLinux\n"
-               "is a very easy manager to setting up games to play\n"
-               "through wine, instead of doing it manually."),
+               "Linux gaming natively. Wine, Lutris and Heroic Games Launcher\n"
+               "make it easy to run Windows games on Linux."),
     'graphic_drivers': _("Installs AMD or Nvidia proprietary graphics driver instead\n"
                          "of the open-source variant. Do NOT install this if you have a\n"
                          "Nvidia Optimus laptop"),
     'lamp': _("This option installs a web server (you can choose\n"
               "Apache or Nginx) plus a database server (Mariadb)\n"
               "and PHP."),
-    'lembrame': _("Lembrame is a concept tool to sync your settings to the cloud\n"
-                  "and reuse them on your next install to have the same desktop settings,\n"
-                  "packages and more."),
+    'lembrame': _("Lembrame syncs your desktop and system settings for reuse\n"
+                  "on your next installation, preserving your preferences,\n"
+                  "packages, and configuration."),
     'lts': _("The linux-lts package is an alternative Arch kernel package.\n"
              "This particular kernel version enjoys long-term support from upstream,\n"
              "including security fixes and some feature backports. Additionally, this\n"
