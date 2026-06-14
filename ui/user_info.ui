@@ -43,6 +43,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Your name:</property>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
             </object>
           </child>
         <child>
@@ -51,6 +53,8 @@
             <property name="can_focus">False</property>
             <property name="margin_bottom">20</property>
             <property name="label" translatable="yes">Your computer's name:</property>
+            <property name="left-attach">0</property>
+            <property name="top-attach">1</property>
             </object>
           </child>
         <child>
@@ -59,6 +63,8 @@
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Pick a username:</property>
             <property name="justify">right</property>
+            <property name="left-attach">0</property>
+            <property name="top-attach">2</property>
             </object>
           </child>
         <child>
@@ -67,6 +73,8 @@
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Choose a password:</property>
             <property name="justify">right</property>
+            <property name="left-attach">0</property>
+            <property name="top-attach">3</property>
             </object>
           </child>
         <child>
@@ -75,6 +83,8 @@
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Confirm your password:</property>
             <property name="justify">right</property>
+            <property name="left-attach">0</property>
+            <property name="top-attach">4</property>
             </object>
           </child>
         <child>
@@ -82,6 +92,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
+            <property name="left-attach">2</property>
+            <property name="top-attach">0</property>
             <child>
               <placeholder/>
             </child>
@@ -92,6 +104,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
+            <property name="left-attach">3</property>
+            <property name="top-attach">0</property>
             <child>
               <placeholder/>
             </child>
@@ -102,6 +116,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
             <child>
               <object class="GtkEntry" id="fullname">
                 <property name="visible">True</property>
@@ -136,6 +152,8 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">3</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">1</property>
             <child>
               <object class="GtkBox" id="box3">
                 <property name="visible">True</property>
@@ -145,6 +163,7 @@
                   <object class="GtkEntry" id="hostname">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="width_chars">30</property>
                     <accessibility>
                       
                       
@@ -202,6 +221,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">2</property>
             <child>
               <object class="GtkEntry" id="username">
                 <property name="visible">True</property>
@@ -249,6 +270,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">3</property>
             <child>
               <object class="GtkEntry" id="password">
                 <property name="visible">True</property>
@@ -285,6 +308,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">4</property>
             <child>
               <object class="GtkEntry" id="verified_password">
                 <property name="visible">True</property>
@@ -334,6 +359,9 @@
             <property name="receives_default">False</property>
             <property name="halign">start</property>
             <property name="valign">start</property>
+            <property name="left-attach">0</property>
+            <property name="top-attach">5</property>
+            <property name="width">2</property>
             </object>
           </child>
         <child>
@@ -342,6 +370,9 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">3</property>
+            <property name="left-attach">0</property>
+            <property name="top-attach">6</property>
+            <property name="width">2</property>
             <child>
               <object class="GtkCheckButton" id="login_auto">
                 <property name="label" translatable="yes">Log in automatically</property>
