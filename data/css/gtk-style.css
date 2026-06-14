@@ -5,6 +5,24 @@
 
 /* =========== MAIN LAYOUT =========== */
 
+/* Constrain overly wide pages */
+#user_info_grid {
+    max-width: 500px;
+}
+
+#zfs {
+    max-width: 550px;
+}
+
+#automatic {
+    max-width: 550px;
+}
+
+/* Constrain main content area */
+#main_stack {
+    max-width: 620px;
+}
+
 window {
     background-color: #2a2e32;
 }
