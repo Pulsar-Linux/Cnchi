@@ -119,17 +119,18 @@ class Location(GtkBaseBox):
             self.geoip_country = geoip.GeoIP().get_country()
         if self.geoip_country:
             names = self.geoip_country.names
-            #logging.debug(names)
             model = self.listbox.observe_children()
             for i in range(model.get_n_items()):
                 listbox_row = model.get_item(i)
-                label = listbox_row.get_child()
-                if label is not None:
-                    label = label.get_text()
+                label_widget = listbox_row.get_child()
+                if label_widget is not None:
+                    label_text = label_widget.get_text()
                     for name in names.values():
-                        if name in label:
-                            self.selected_country = label
+                        if name in label_text:
+                            logging.debug("GeoIP matched '%s' in '%s'", name, label_text)
+                            self.selected_country = label_text
                             self.listbox.select_row(listbox_row)
+                            listbox_row.grab_focus()
                             return
             self.select_first_listbox_item()
         else:
