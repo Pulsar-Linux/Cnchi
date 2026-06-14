@@ -39,7 +39,7 @@ import xml.etree.cElementTree as elementTree
 
 import gi
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk
 
 from pages.gtkbasebox import GtkBaseBox
 from logging_utils import ContextFilter
@@ -120,9 +120,11 @@ class Location(GtkBaseBox):
             self.geoip_country = geoip.GeoIP().get_country()
         if self.geoip_country:
             names = self.geoip_country.names
-            model = self.listbox.observe_children()
-            for i in range(model.get_n_items()):
-                listbox_row = model.get_item(i)
+            i = 0
+            while True:
+                listbox_row = self.listbox.get_row_at_index(i)
+                if listbox_row is None:
+                    break
                 label_widget = listbox_row.get_child()
                 if label_widget is not None:
                     label_text = label_widget.get_text()
@@ -131,33 +133,14 @@ class Location(GtkBaseBox):
                             logging.debug("GeoIP matched '%s' in '%s'", name, label_text)
                             self.selected_country = label_text
                             self.listbox.select_row(listbox_row)
-                            GLib.idle_add(self._focus_row, listbox_row)
                             return
+                i += 1
             self.select_first_listbox_item()
         else:
             self.select_first_listbox_item()
 
-    def _focus_row(self, row):
-        """ Focus the listbox row and scroll it into view """
-        self.scrolledwindow.grab_focus()
-        row.grab_focus()
-        return False
-
-    def hide_all(self):
-        """ Hide all widgets """
-        names = [
-            "location_box", "label_help", "label_choose_country", "box1",
-            "eventbox1", "eventbox2", "scrolledwindow1", "listbox_countries"]
-
-        for name in names:
-            control = self.gui.get_object(name)
-            if control is not None:
-                control.hide()
-
     def prepare(self, direction):
         """ Prepare dialog for showing """
-        self.hide_all()
-
         self.fill_listbox()
         self.select_detected_country()
         self.translate_ui()
