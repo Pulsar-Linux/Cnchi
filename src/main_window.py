@@ -177,11 +177,10 @@ class MainWindow(Gtk.ApplicationWindow):
         self.version_label = ui_builder.get_object("version_label")
 
         # Set logo
-        logo_path = os.path.join(data_dir, "images", "pulsar", "pulsar-icon.png")
+        logo_path = os.path.join(data_dir, "images", "pulsar", "pulsar-logo.svg")
         if os.path.exists(logo_path):
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(logo_path, 220, 220, True)
-            texture = Gdk.Texture.new_for_pixbuf(pixbuf)
-            self.logo_image.set_from_paintable(texture)
+            self.logo_image.set_from_file(logo_path)
+            self.logo_image.set_pixel_size(220)
             self.logo_image.set_hexpand(True)
             self.logo_image.set_halign(Gtk.Align.CENTER)
 
