@@ -67,9 +67,10 @@ class Location(GtkBaseBox):
         self.geoip_country = None
         self.selected_country = ""
 
-        self.show_all_locations = False
+        self.show_all_locations = True
 
         button = self.gui.get_object("show_all_locations_checkbutton")
+        button.set_active(True)
         button.set_name("location-checkbutton-show-all-locations")
         button.connect("toggled", self.all_locations_toggled, "")
 
