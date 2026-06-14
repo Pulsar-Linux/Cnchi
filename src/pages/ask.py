@@ -297,7 +297,7 @@ class InstallationAsk(GtkBaseBox):
         label.set_text(txt)
         label.set_name("automatic_desc")
         label.set_hexpand(False)
-        label.set_line_wrap(True)
+        label.set_wrap(True)
         label.set_max_width_chars(max_width_chars)
 
         button = self.gui.get_object("encrypt_checkbutton")
@@ -305,7 +305,7 @@ class InstallationAsk(GtkBaseBox):
         button.set_label(txt)
         button.set_name("enc_btn")
         button.set_hexpand(False)
-        # button.set_line_wrap(True)
+        # button.set_wrap(True)
         # button.set_max_width_chars(max_width_chars)
 
         label = self.gui.get_object("encrypt_label")
@@ -315,7 +315,7 @@ class InstallationAsk(GtkBaseBox):
         label.set_text(txt)
         label.set_name("enc_label")
         label.set_hexpand(False)
-        label.set_line_wrap(True)
+        label.set_wrap(True)
         label.set_max_width_chars(max_width_chars)
 
         button = self.gui.get_object("lvm_checkbutton")
@@ -323,7 +323,7 @@ class InstallationAsk(GtkBaseBox):
         button.set_label(txt)
         button.set_name("lvm_btn")
         button.set_hexpand(False)
-        # button.set_line_wrap(True)
+        # button.set_wrap(True)
         # button.set_max_width_chars(max_width_chars)
 
         label = self.gui.get_object("lvm_label")
@@ -333,7 +333,7 @@ class InstallationAsk(GtkBaseBox):
         label.set_text(txt)
         label.set_name("lvm_label")
         label.set_hexpand(False)
-        label.set_line_wrap(True)
+        label.set_wrap(True)
         label.set_max_width_chars(max_width_chars)
 
         button = self.gui.get_object("zfs_checkbutton")
@@ -341,7 +341,7 @@ class InstallationAsk(GtkBaseBox):
         button.set_label(txt)
         button.set_name("zfs_btn")
         button.set_hexpand(False)
-        # button.set_line_wrap(True)
+        # button.set_wrap(True)
         # button.set_max_width_chars(max_width_chars)
 
         label = self.gui.get_object("zfs_label")
@@ -350,7 +350,7 @@ class InstallationAsk(GtkBaseBox):
         label.set_text(txt)
         label.set_name("zfs_label")
         label.set_hexpand(False)
-        label.set_line_wrap(True)
+        label.set_wrap(True)
         label.set_max_width_chars(max_width_chars)
 
         button = self.gui.get_object("home_checkbutton")
@@ -358,7 +358,7 @@ class InstallationAsk(GtkBaseBox):
         button.set_label(txt)
         button.set_name("home_btn")
         button.set_hexpand(False)
-        # button.set_line_wrap(True)
+        # button.set_wrap(True)
         # button.set_max_width_chars(max_width_chars)
 
         label = self.gui.get_object("home_label")
@@ -368,7 +368,7 @@ class InstallationAsk(GtkBaseBox):
         label.set_text(txt)
         label.set_name("home_label")
         label.set_hexpand(False)
-        label.set_line_wrap(True)
+        label.set_wrap(True)
         label.set_max_width_chars(max_width_chars)
 
         # Alongside Install (For now, only works with Windows)
@@ -381,7 +381,7 @@ class InstallationAsk(GtkBaseBox):
         #     txt = _("Installs Pulsar without removing {0}").format(oses_str)
         #     txt = description_style.format(txt)
         #     label.set_markup(txt)
-        #     label.set_line_wrap(True)
+        #     label.set_wrap(True)
         #
         #     intro_txt = _("This computer has {0} installed.").format(oses_str)
         #     intro_txt = intro_txt + "\n" + _("What do you want to do?")
@@ -393,7 +393,7 @@ class InstallationAsk(GtkBaseBox):
         intro_label.set_text(intro_txt)
         intro_label.set_name("intro_label")
         intro_label.set_hexpand(False)
-        intro_label.set_line_wrap(True)
+        intro_label.set_wrap(True)
         intro_label.set_max_width_chars(max_width_chars)
 
         # Advanced Install
@@ -408,7 +408,7 @@ class InstallationAsk(GtkBaseBox):
         label.set_text(txt)
         label.set_name("adv_desc_label")
         label.set_hexpand(False)
-        label.set_line_wrap(True)
+        label.set_wrap(True)
         label.set_max_width_chars(max_width_chars)
 
     def store_values(self):

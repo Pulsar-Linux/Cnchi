@@ -107,7 +107,7 @@ class Check(GtkBaseBox):
         txt = "(*) <i>{0}</i>".format(txt)
         self.label_space.set_markup(txt)
         self.label_space.set_hexpand(False)
-        self.label_space.set_line_wrap(True)
+        self.label_space.set_wrap(True)
         self.label_space.set_max_width_chars(80)
 
         self.prepare_power_source = self.gui.get_object("prepare_power_source")
@@ -129,7 +129,7 @@ class Check(GtkBaseBox):
         txt = '<span weight="bold" size="large">{0}</span>'.format(txt)
         self.prepare_best_results.set_markup(txt)
         self.prepare_best_results.set_hexpand(False)
-        self.prepare_best_results.set_line_wrap(True)
+        self.prepare_best_results.set_wrap(True)
         self.prepare_best_results.set_max_width_chars(80)
 
     def on_timer(self):

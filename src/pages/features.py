@@ -231,7 +231,7 @@ class Features(GtkBaseBox):
             row = self.listbox.get_row_at_index(0)
             if row is None:
                 break
-            row.destroy()
+            self.listbox.remove(row)
 
         self.listbox_rows = {}
 

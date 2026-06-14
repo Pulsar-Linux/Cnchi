@@ -236,7 +236,7 @@ class Location(GtkBaseBox):
             listbox_row = self.listbox.get_row_at_index(0)
             if listbox_row is None:
                 break
-            listbox_row.destroy()
+            self.listbox.remove(listbox_row)
 
         for area in areas:
             label = Gtk.Label.new()

@@ -136,7 +136,7 @@ class Language(GtkBaseBox):
         label.set_markup(txt)
 
         label.set_hexpand(False)
-        label.set_line_wrap(True)
+        label.set_wrap(True)
         label.set_max_width_chars(50)
 
         # a11y

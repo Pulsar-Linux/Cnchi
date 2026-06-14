@@ -448,7 +448,7 @@ class Mirrors(GtkBaseBox):
         intro_label.set_text(intro_txt)
         intro_label.set_name("intro_label")
         intro_label.set_hexpand(False)
-        intro_label.set_line_wrap(True)
+        intro_label.set_wrap(True)
 
         intro_label.set_max_width_chars(80)
 
