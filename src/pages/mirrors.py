@@ -212,7 +212,7 @@ class MirrorListBox(Gtk.ListBox):
             box = Gtk.Box(spacing=20)
             box.set_name(url)
             row = MirrorListBoxRow(url, active, self.switch_activated, drag_cbs)
-            self.add(row)
+            self.append(row)
 
     def set_mirror_active(self, url, active):
         """ Changes the active status in our mirrors list """
