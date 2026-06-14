@@ -265,6 +265,9 @@ class MainWindow(Gtk.ApplicationWindow):
         # Set window geometry
         self.set_default_size(self._main_window_width, self._main_window_height)
         self.set_resizable(True)
+        GLib.timeout_add(2000, lambda: (logging.info("Window size: def=%dx%d actual=%dx%d",
+            self._main_window_width, self._main_window_height,
+            self.get_width(), self.get_height()), False)[1])
 
         # Apply CSS
         style_provider = Gtk.CssProvider()
