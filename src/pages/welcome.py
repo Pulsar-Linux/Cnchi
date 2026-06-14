@@ -169,7 +169,7 @@ class Welcome(GtkBaseBox):
         # Tell timezone process to start searching now
         self.settings.set('timezone_start', True)
         # Simulate a forward button click
-        self.forward_button.activate()
+        self.forward_button.emit('clicked')
 
     def show_loading_message(self, do_show=True):
         """ Shows a message so the user knows Cnchi is loading pages
