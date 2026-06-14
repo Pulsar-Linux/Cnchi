@@ -95,7 +95,6 @@ class PartitionBaseDialog(Gtk.Dialog):
             image = Gtk.Image.new_from_icon_name(icon)
             btn = self.buttons[btn_id]
             btn.set_label(lbl)
-            btn.set_image(image)
             btn.set_icon_name(icon)
 
     def get_beginning_point(self):
