@@ -282,6 +282,10 @@ class MainWindow(Gtk.ApplicationWindow):
         # Pre-load more pages
         self.pages["language"] = pages.language.Language(self.params)
         self.pages["check"] = pages.check.Check(self.params)
+
+        # Load all remaining pages
+        self.load_pages()
+
         self.set_focus(None)
         misc.gtk_refresh()
 
