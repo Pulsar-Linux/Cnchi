@@ -268,6 +268,7 @@ class MainWindow(Gtk.ApplicationWindow):
         GLib.timeout_add(2000, lambda: (logging.info("Window size: def=%dx%d actual=%dx%d",
             self._main_window_width, self._main_window_height,
             self.get_width(), self.get_height()), False)[1])
+        GLib.timeout_add(2500, self._log_page_sizes)
 
         # Apply CSS
         style_provider = Gtk.CssProvider()
@@ -505,3 +506,10 @@ class MainWindow(Gtk.ApplicationWindow):
         """ Set keyboard focus """
         if widget:
             widget.grab_focus()
+
+    def _log_page_sizes(self):
+        """ Log each page's preferred width to find overflow """
+        for name, page in self.pages.items():
+            w = page.get_preferred_width(-1)
+            logging.info("Page '%s' preferred width: min=%d natural=%d", name, w[0], w[1])
+        return False
