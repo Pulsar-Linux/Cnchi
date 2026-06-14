@@ -36,7 +36,7 @@ import config
 import desktop_info
 import info
 import misc.extra as misc
-from gi.repository import GLib
+
 
 import pages.welcome
 import pages.language
@@ -264,8 +264,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
         # Set window geometry
         self.set_default_size(self._main_window_width, self._main_window_height)
-        self.connect('map', lambda w: None)
-        GLib.idle_add(lambda: (self.set_default_size(self._main_window_width, self._main_window_height), False)[1])
         self.set_resizable(True)
 
         # Apply CSS
