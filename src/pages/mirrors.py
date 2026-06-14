@@ -92,7 +92,7 @@ class MirrorListBoxRow(Gtk.ListBoxRow):
         self.switch.set_active(active)
         box.prepend(self.switch)
 
-        self.add(box)
+        self.set_child(box)
 
         self.set_selectable(True)
 
