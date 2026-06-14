@@ -204,12 +204,6 @@ window {
     background-color: #2a2e32;
 }
 
-#welcome button {
-    min-width: 140px;
-    max-width: 200px;
-    padding: 8px 24px;
-}
-
 /* =========== PAGE INNER WIDGETS =========== */
 
 /* All page content boxes */
