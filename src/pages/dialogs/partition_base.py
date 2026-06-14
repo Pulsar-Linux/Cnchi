@@ -62,11 +62,14 @@ class PartitionBaseDialog(Gtk.Dialog):
         self.gui_dir = gui_info['gui_dir']
         self.gui_path = os.path.join(
             self.gui_dir, 'dialogs', gui_info['gui_file'])
-        self.gui.add_from_file(self.gui_path)
 
-        # Connect UI signals
-        self.gui.connect_signals(self)
-        self.gui.connect_signals(child)
+        # GTK4: set_connect_func replaces removed connect_signals
+        def _handler_lookup(builder, obj, signal_name, handler_name, connect_obj, flags, user_data):
+            handler = getattr(self, handler_name, None) or getattr(child, handler_name, None)
+            if handler:
+                obj.connect(signal_name, handler)
+        self.gui.set_connect_func(_handler_lookup, None)
+        self.gui.add_from_file(self.gui_path)
 
         self.luks_dialog = None
         # luks options is a tuple (use_luks, vol_name, password)

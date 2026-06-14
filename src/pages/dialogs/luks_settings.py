@@ -58,10 +58,14 @@ class LuksSettingsDialog(Gtk.Dialog):
         self.gui = Gtk.Builder()
         gui_file = os.path.join(
            gui_dir, 'dialogs', LuksSettingsDialog.UI_FILE)
-        self.gui.add_from_file(gui_file)
 
-        # Connect UI signals
-        self.gui.connect_signals(self)
+        # Connect UI signals (GTK4: set_connect_func replaces removed connect_signals)
+        def _handler_lookup(builder, obj, signal_name, handler_name, connect_obj, flags, user_data):
+            handler = getattr(self, handler_name, None)
+            if handler:
+                obj.connect(signal_name, handler)
+        self.gui.set_connect_func(_handler_lookup, None)
+        self.gui.add_from_file(gui_file)
 
         # Show an warning message just once
         self.warning_message_shown = False
