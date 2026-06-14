@@ -36,9 +36,6 @@ import sys
 import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Gdk', '4.0')
-gi.require_version('GdkPixbuf', '2.0')
-from gi.repository import GdkPixbuf
-
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -106,13 +103,10 @@ class Welcome(GtkBaseBox):
         self.labels['installit'].set_mnemonic_widget(self.buttons['graph'])
 
         for key in self.images:
-            image = self.filenames[key]
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
-                image['path'],
-                image['width'],
-                image['height'])
-            texture = Gdk.Texture.new_for_pixbuf(pixbuf)
-            self.images[key].set_from_paintable(texture)
+            image_path = self.filenames[key]['path']
+            if os.path.exists(image_path):
+                texture = Gdk.Texture.new_from_filename(image_path)
+                self.images[key].set_from_paintable(texture)
 
         # Locale fallback warning
         self._locale_warning = None

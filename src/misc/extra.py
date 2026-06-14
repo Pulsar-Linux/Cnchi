@@ -145,9 +145,12 @@ def regain_privileges():
     _DROPPED_PRIVILEGES -= 1
     if _DROPPED_PRIVILEGES == 0:
         if os.geteuid() != 0:
-            os.seteuid(0)
-            os.setegid(0)
-            os.setgroups([])
+            try:
+                os.seteuid(0)
+                os.setegid(0)
+                os.setgroups([])
+            except PermissionError:
+                logging.warning("Cannot regain root privileges.")
 
 def drop_privileges_save():
     """ Drop the real UID/GID as well, and hide them in saved IDs. """
