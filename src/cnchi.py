@@ -632,6 +632,13 @@ class CnchiInit():
 
 def main():
     """ Main function. Initializes Cnchi and creates it as a GTK App """
+    # Use fork for multiprocessing (forkserver fails when running as root/setuid)
+    import multiprocessing as _mp
+    try:
+        _mp.set_start_method('fork')
+    except RuntimeError:
+        pass  # already set
+
     # Init cnchi
     cnchi_init = CnchiInit()
     # Create Gtk Application
