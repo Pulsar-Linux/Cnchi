@@ -53,6 +53,46 @@ sys.path.append(os.path.join(CNCHI_PATH, "src/parted3"))
 gi.require_version('Gtk', '4.0')
 from gi.repository import Gio, Gtk, GObject, GLib
 
+import xml.etree.ElementTree as _ET
+
+# GTK4 removed Builder.connect_signals; re-add it via XML signal parsing
+_GTK_BUILDER_SIGNAL_HANDLERS = {}
+_GTK_BUILDER_SIGNAL_QUEUE = {}
+
+def _builder_connect_signals(self, handler):
+    _GTK_BUILDER_SIGNAL_HANDLERS.setdefault(id(self), [])
+    _GTK_BUILDER_SIGNAL_HANDLERS[id(self)].append(handler)
+
+Gtk.Builder.connect_signals = _builder_connect_signals
+
+_original_add_from_file = Gtk.Builder.add_from_file
+
+def _patched_add_from_file(self, path):
+    result = _original_add_from_file(self, path)
+    handlers = _GTK_BUILDER_SIGNAL_HANDLERS.get(id(self), [])
+    if handlers:
+        try:
+            tree = _ET.parse(path)
+            for obj in tree.getroot().iter('object'):
+                obj_id = obj.get('id')
+                widget = self.get_object(obj_id) if obj_id else None
+                if widget is None:
+                    continue
+                for sig in obj.iter('signal'):
+                    sig_name = sig.get('name')
+                    handler_name = sig.get('handler')
+                    if sig_name and handler_name:
+                        for h in handlers:
+                            meth = getattr(h, handler_name, None)
+                            if meth:
+                                widget.connect(sig_name, meth)
+                                break
+        except Exception:
+            pass
+    return result
+
+Gtk.Builder.add_from_file = _patched_add_from_file
+
 import misc.extra as misc
 from misc.run_cmd import call
 import show_message as show
