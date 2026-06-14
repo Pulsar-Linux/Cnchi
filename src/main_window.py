@@ -116,8 +116,8 @@ class MainWindow(Gtk.ApplicationWindow):
     def __init__(self, app, cmd_line):
         Gtk.ApplicationWindow.__init__(self, title="Cnchi", application=app)
 
-        self._main_window_width = 1200
-        self._main_window_height = 715
+        self._main_window_width = 960
+        self._main_window_height = 640
 
         logging.info("Cnchi installer version %s", info.CNCHI_VERSION)
 
